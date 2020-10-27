@@ -26,12 +26,16 @@ public class MovementTopDown : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
-
+		if (advancedMovement)
+		{
+			AdvancedMovement();
+		}
     }
 
 	public void OnMove(InputValue value)
 	{
 		inputDirection = value.Get<Vector2>();
+		Debug.Log(inputDirection);
 		MovePlayer();
 	}
 
@@ -39,16 +43,26 @@ public class MovementTopDown : MonoBehaviour
 	{
 		if (!advancedMovement)
 		{
-			rb.velocity = new Vector2(inputDirection.x, inputDirection.y) * speed;
-		}
-		else
-		{
-			// Add advanced movement
+			BasicMovement();
 		}
 	}
 
+	private void BasicMovement()
+	{
+		rb.velocity = new Vector2(inputDirection.x, inputDirection.y) * speed;
+	}
+
+	private void AdvancedMovement()
+	{
+		Vector2 tempSpeed = rb.velocity;
+
+
+
+	}
+
+
 	public void OnJump()
 	{
-		Debug.Log("Space was clicked");
+
 	}
 }
