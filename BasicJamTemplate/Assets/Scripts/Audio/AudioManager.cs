@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class AudioManager : MonoBehaviour
 {
 	#region Singleton
-	public static GameManager _instance;
-	public static GameManager Instance { get { return _instance; } }
+	public static AudioManager _instance;
+	public static AudioManager Instance { get { return _instance; } }
 
 	private void Awake()
 	{
@@ -24,9 +24,4 @@ public class GameManager : MonoBehaviour
 	#endregion
 
 
-
-	public void Print(string print)
-	{
-		Debug.Log(print);
-	}
 }
