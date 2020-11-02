@@ -61,6 +61,7 @@ public class MovementTopDown : MonoBehaviour
 			{
 				float factor;
 				float degree = Vector2.Angle(rb.velocity, inputDirection);
+
 				if (degree >= 90)
 				{
 					factor = 0;
@@ -69,8 +70,6 @@ public class MovementTopDown : MonoBehaviour
 				{
 					factor = Mathf.Cos(Mathf.Deg2Rad * degree);
 				}
-
-				Debug.Log(degree);
 
 				Vector2 tempAcc = inputDirection * (speed - tempSpeed.magnitude * factor) * acceleration * Time.fixedDeltaTime;
 
