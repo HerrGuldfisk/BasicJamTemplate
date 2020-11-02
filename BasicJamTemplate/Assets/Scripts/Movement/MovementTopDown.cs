@@ -24,7 +24,7 @@ public class MovementTopDown : MonoBehaviour
     }
 
 	// Update is called once per frame
-	void Update()
+	void FixedUpdate()
     {
 		if (advancedMovement)
 		{
@@ -35,7 +35,6 @@ public class MovementTopDown : MonoBehaviour
 	public void OnMove(InputValue value)
 	{
 		inputDirection = value.Get<Vector2>();
-		Debug.Log(inputDirection);
 		MovePlayer();
 	}
 
@@ -56,12 +55,64 @@ public class MovementTopDown : MonoBehaviour
 	{
 		Vector2 tempSpeed = rb.velocity;
 
+		if (inputDirection.magnitude > 0)
+		{
+			if (tempSpeed.magnitude <= speed)
+			{
+				float factor;
+				float degree = Vector2.Angle(rb.velocity, inputDirection);
+				if (degree >= 90)
+				{
+					factor = 0;
+				}
+				else
+				{
+					factor = Mathf.Cos(Mathf.Deg2Rad * degree);
+				}
+
+				Debug.Log(degree);
+
+				Vector2 tempAcc = inputDirection * (speed - tempSpeed.magnitude * factor) * acceleration * Time.fixedDeltaTime;
+
+				if((rb.velocity + tempAcc).magnitude >= speed)
+				{
+					rb.velocity = rb.velocity.normalized * speed;
+				}
+				else
+				{
+					rb.velocity += tempAcc;
+				}
+
+			}
+		}
+		else
+		{
+			if (rb.velocity.magnitude == 0) { return; }
+			rb.velocity -= rb.velocity * deceleration * Time.fixedDeltaTime;
+
+			if(rb.velocity.magnitude <= 0.01f)
+			{
+				rb.velocity = Vector2.zero;
+			}
+		}
+
+
 
 
 	}
 
 
 	public void OnJump()
+	{
+
+	}
+
+	public void OnAction()
+	{
+
+	}
+
+	public void OnShift()
 	{
 
 	}

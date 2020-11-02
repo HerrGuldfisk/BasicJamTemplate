@@ -852,9 +852,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  advancedMovement: 0
-  acceleration: 1
-  deceleration: 1
+  advancedMovement: 1
+  acceleration: 10
+  deceleration: 5
 --- !u!114 &1827401542
 MonoBehaviour:
   m_ObjectHideFlags: 0
