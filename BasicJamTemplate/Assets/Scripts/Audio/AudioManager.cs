@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
@@ -23,5 +24,24 @@ public class AudioManager : MonoBehaviour
 	}
 	#endregion
 
+	[SerializeField]
+	private AudioMixer mixer;
 
+	public string changedValue;
+
+	private void Start()
+	{
+
+	}
+
+
+	public void ChangedValue(string name)
+	{
+		changedValue = name + "Volume";
+	}
+
+	public void FromSlider(float sliderValue)
+	{
+		mixer.SetFloat(changedValue, Mathf.Log10(sliderValue) * 30);
+	}
 }

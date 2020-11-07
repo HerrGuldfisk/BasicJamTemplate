@@ -1,0 +1,33 @@
+{
+    "name": "UIControls",
+    "maps": [
+        {
+            "name": "Default",
+            "id": "003e37fa-c497-4a5b-8e62-2736d387915d",
+            "actions": [
+                {
+                    "name": "Exit",
+                    "type": "Button",
+                    "id": "19645e61-7491-4248-81ce-17cfacd1b610",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "54b8652e-f90f-4f06-a9b3-67c894254f55",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Exit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
