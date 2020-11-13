@@ -17,6 +17,8 @@ public class MovementTopDown : MonoBehaviour
 
 	private Vector2 inputDirection;
 
+	private PlayerInput input;
+
     void Start()
     {
 		rb = GetComponent<Rigidbody2D>();

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,9 +25,18 @@ public class GameManager : MonoBehaviour
 	}
 	#endregion
 
-	private bool inMenu;
 	[SerializeField]
 	private UIManager UI;
+
+	public bool menuActive;
+
+	public UnityEvent onPause = new UnityEvent();
+
+	private void Start()
+	{
+		UIManager.Instance.onResume.AddListener(OnExit);
+		OnExit();
+	}
 
 	public void Print(string print)
 	{
@@ -35,14 +45,29 @@ public class GameManager : MonoBehaviour
 
 	public void OnExit()
 	{
-		if (!inMenu)
+		if (!menuActive)
 		{
-			UI.canvases["MainMenu"].SetActive(true);
+			menuActive = true;
+			onPause.Invoke();
+			UI.OpenMenu("MainMenu");
 			UI.currentlyActive.transform.GetChild(0).GetComponent<Button>().Select();
 		}
 		else
 		{
-			UI.currentlyActive.SetActive(false);
+			if (menuActive)
+			{
+				if (UI.currentlyActive.name.Equals("MainMenu") || UI.currentlyActive.name.Equals("InGameMenu"))
+				{
+					menuActive = false;
+					onPause.Invoke();
+					UI.currentlyActive.gameObject.SetActive(false);
+				}
+				else
+				{
+					UI.OpenMenu("MainMenu");
+					UI.currentlyActive.transform.GetChild(1).GetComponent<Button>().Select();
+				}
+			}
 		}
 	}
 

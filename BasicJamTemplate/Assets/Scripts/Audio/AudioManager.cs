@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,16 +25,86 @@ public class AudioManager : MonoBehaviour
 	}
 	#endregion
 
-	[SerializeField]
-	private AudioMixer mixer;
+	public AudioMixer mixer;
 
 	public string changedValue;
 
+	public Sound[] sounds;
+
+	[HideInInspector]
+	public Dictionary<string, float> paramValue = new Dictionary<string, float>();
+
+	public string[] paramNames;
+
 	private void Start()
 	{
+		LoadAllSounds();
 
+		SaveManager.Instance.LoadSoundLevels();
+		SetAudioLevels();
 	}
 
+	private void LoadAllSounds()
+	{
+		foreach (Sound s in sounds)
+		{
+			s.source = gameObject.AddComponent<AudioSource>();
+			s.source.clip = s.clip;
+			s.source.volume = s.volume;
+			s.source.pitch = s.pitch;
+			s.source.loop = s.loop;
+		}
+	}
+
+	public void Play(string name, bool loop=false)
+	{
+		Sound s = Array.Find(sounds, sound => sound.name == name);
+
+		if (s == null)
+		{
+			Debug.LogWarning("Sound: " + name + " not found!");
+			return;
+		}
+
+		s.loop = loop;
+
+		s.source.Play();
+	}
+
+	public void Muted()
+	{
+		// Add a muted function that toggle sound volume.
+	}
+
+
+
+
+	private void SetAudioLevels()
+	{
+		foreach (KeyValuePair<string, float> entry in paramValue)
+		{
+			mixer.SetFloat(entry.Key, entry.Value);
+		}
+	}
+
+	// Currently not in use, might be needed at some point.
+	private void GetAudioLevels()
+	{
+		foreach (string soundLevel in paramNames)
+		{
+			float volume;
+			bool result = mixer.GetFloat(soundLevel, out volume);
+
+			if (result)
+			{
+				paramValue[soundLevel] = volume;
+			}
+			else
+			{
+				Debug.Log("The parameter: " + soundLevel + " was not found in the AudioMixer");
+			}
+		}
+	}
 
 	public void ChangedValue(string name)
 	{
@@ -43,5 +114,11 @@ public class AudioManager : MonoBehaviour
 	public void FromSlider(float sliderValue)
 	{
 		mixer.SetFloat(changedValue, Mathf.Log10(sliderValue) * 30);
+		paramValue[changedValue] = Mathf.Log10(sliderValue) * 30;
+	}
+
+	public Dictionary<string, float> AudioLevels()
+	{
+		return paramValue;
 	}
 }

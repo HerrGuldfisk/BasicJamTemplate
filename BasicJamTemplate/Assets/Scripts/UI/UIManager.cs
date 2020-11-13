@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class UIManager : MonoBehaviour
 {
@@ -27,7 +28,9 @@ public class UIManager : MonoBehaviour
 
 	public Dictionary<string, GameObject> canvases = new Dictionary<string, GameObject>();
 
-	public GameObject currentlyActive { get; private set; }
+	public GameObject currentlyActive;
+
+	public UnityEvent onResume = new UnityEvent();
 
 	void Start()
 	{
@@ -35,6 +38,11 @@ public class UIManager : MonoBehaviour
 		foreach (Transform child in transform)
 		{
 			canvases[child.gameObject.name] = child.gameObject;
+
+			if(child.gameObject.name == "OptionsMenu")
+			{
+				// Load in a dictionary with references to the sliders.
+			}
 		}
 
 		currentlyActive = canvases["MainMenu"];
@@ -48,7 +56,6 @@ public class UIManager : MonoBehaviour
 		// TODO Connect to game manager.
 	}
 
-
 	public void OpenMenu(string menu)
 	{
 		try
@@ -58,6 +65,25 @@ public class UIManager : MonoBehaviour
 				currentlyActive.SetActive(false);
 				currentlyActive = canvases[menu];
 				currentlyActive.SetActive(true);
+
+				if (currentlyActive.gameObject.CompareTag("OptionsMenu"))
+				{
+					Dictionary<string, float> soundLevels = AudioManager.Instance.AudioLevels();
+					List<Slider> allSliders = new List<Slider>();
+
+					foreach(Transform child in currentlyActive.transform)
+					{
+						if (child.GetComponent<Slider>())
+						{
+							allSliders.Add(child.GetComponent<Slider>());
+						}
+					}
+
+					allSliders[0].value = Mathf.Pow(10, soundLevels["MasterVolume"] / 30f);
+					allSliders[1].value = Mathf.Pow(10, soundLevels["MusicMasterVolume"] / 30f);
+					allSliders[2].value = Mathf.Pow(10, soundLevels["EffectsMasterVolume"] / 30f);
+
+				}
 			}
 		}
 		catch
