@@ -878,10 +878,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cards:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 6599294317489977323, guid: ab8335fdbaa8a6648be782bf6decf877, type: 3}
+  - {fileID: 6599294317489977323, guid: ab8335fdbaa8a6648be782bf6decf877, type: 3}
+  - {fileID: 6599294317489977323, guid: ab8335fdbaa8a6648be782bf6decf877, type: 3}
+  - {fileID: 6599294317489977323, guid: ab8335fdbaa8a6648be782bf6decf877, type: 3}
   board: {fileID: 0}
   cardMoveTime: 0.4
   animMoveCurve:
@@ -990,7 +990,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  cardHeight: 1.4
+  cardHeight: 0.6
+  flippedCards: 0
 --- !u!4 &361973200
 Transform:
   m_ObjectHideFlags: 0
