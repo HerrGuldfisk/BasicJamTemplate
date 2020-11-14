@@ -93,7 +93,7 @@ public class Board :  MonoBehaviour
 			randomX = Random.Range(0, x);
 			randomY = Random.Range(0, y);
 
-			if (board[randomX, randomY] != null && board[randomX, randomY].Equals(currentCard))
+			if (board[randomX, randomY] != null && !board[randomX, randomY].Equals(currentCard))
 			{
 				value = true;
 			}
