@@ -18,6 +18,8 @@ public class Card : MonoBehaviour
 
 	public bool flipped;
 
+	public CardEffect cardEffect;
+
 	private void Start()
 	{
 		animMoveCurve = MemoryController.Instance.animMoveCurve;
@@ -54,7 +56,7 @@ public class Card : MonoBehaviour
 		}
 		yield return new WaitForSecondsRealtime(MemoryController.Instance.cardRotationTime * 7 / 9);
 		LeanTween.moveZ(gameObject, 0, MemoryController.Instance.cardRotationTime / 3).setEase(fallCurve);
-		yield return new WaitForSecondsRealtime(MemoryController.Instance.cardRotationTime / 3);
+		yield return new WaitForSecondsRealtime(MemoryController.Instance.cardRotationTime / 2.9f);
 		transform.position = new Vector3(transform.position.x, transform.position.y, 0);
 	}
 

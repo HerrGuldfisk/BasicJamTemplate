@@ -9,7 +9,7 @@ public class Board :  MonoBehaviour
 
 	public List<Card> cards;
 
-	private List<Card> currentCards;
+	public List<Card> currentCards;
 
 	Card[,] board;
 
@@ -80,5 +80,11 @@ public class Board :  MonoBehaviour
 			currentCards[i] = currentCards[randomIndex];
 			currentCards[randomIndex] = temp;
 		}
+	}
+
+	public void GetRandomCard()
+	{
+		int randomX = Random.Range(0, x);
+		int randomY =
 	}
 }
