@@ -53,7 +53,9 @@ public class UIManager : MonoBehaviour
 	{
 		Debug.Log("New Game");
 
-		// TODO Connect to game manager.
+		currentlyActive.SetActive(false);
+
+		MemoryController.Instance.ResetGame();
 	}
 
 	public void OpenMenu(string menu)

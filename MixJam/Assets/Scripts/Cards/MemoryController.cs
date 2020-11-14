@@ -27,6 +27,9 @@ public class MemoryController : MonoBehaviour
 
 	public Board board;
 
+	private int boardX = 4;
+	private int boardY = 2;
+
 	#region Animation
 	public float cardMoveTime;
 
@@ -44,14 +47,19 @@ public class MemoryController : MonoBehaviour
 	#endregion
 
 	public int flippedCards = 0;
-	void Start()
+	public void ResetGame()
     {
+		if (GetComponent<Board>())
+		{
+			Destroy(board);
+		}
+
 		board = gameObject.AddComponent<Board>();
-		board.x = 4;
-		board.y = 2;
+		board.x = boardX;
+		board.y = boardY;
 		board.cards = cards;
 		board.StartUp();
-    }
+	}
 
 	Card card1;
 	Card card2;
@@ -72,7 +80,7 @@ public class MemoryController : MonoBehaviour
 		}
 	}
 
-	void TestCards()
+	private void TestCards()
 	{
 		if (card1.Equals(card2))
 		{
