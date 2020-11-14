@@ -13,6 +13,8 @@ public class Board : MonoBehaviour
 
 	Card[,] board;
 
+	public int flippedCards = 0;
+
 
 	public Board(int x, int y, List<Card> cards)
 	{
@@ -57,6 +59,9 @@ public class Board : MonoBehaviour
 			for (int i = 0; i < x; i++)
 			{
 				board[i, j] = currentCards[pos];
+
+				board[i, j].MoveTo(i, j);
+
 				pos++;
 			}
 		}
@@ -75,6 +80,8 @@ public class Board : MonoBehaviour
 			currentCards[randomIndex] = temp;
 		}
 	}
+
+
 
 
     void Update()

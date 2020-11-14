@@ -32,6 +32,12 @@ public class GameManager : MonoBehaviour
 
 	public UnityEvent onPause = new UnityEvent();
 
+
+	public bool gameInputAllowed = true;
+
+
+
+
 	private void Start()
 	{
 		UIManager.Instance.onResume.AddListener(OnExit);

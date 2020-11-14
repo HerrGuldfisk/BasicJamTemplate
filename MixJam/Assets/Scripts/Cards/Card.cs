@@ -5,8 +5,24 @@ using UnityEngine;
 public class Card : MonoBehaviour
 {
 
-	public Sprite face;
-	public Sprite back;
+	AnimationCurve animCurve;
+
+	public void Clicked()
+	{
+		if()
+	}
+
+	public void MoveTo(float x, float y)
+	{
+		if (animCurve != null)
+		{
+			LeanTween.move(gameObject, new Vector3(x, y, transform.position.z), 0.4f).setEase(animCurve);
+		}
+		else
+		{
+			LeanTween.move(gameObject, new Vector3(x, y, transform.position.z), 0.4f).setEase(LeanTweenType.easeSpring);
+		}
+	}
 
 
 }
