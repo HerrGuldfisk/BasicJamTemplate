@@ -38,12 +38,6 @@ public class Card : MonoBehaviour
 			MemoryController.Instance.StoreCards(this);
 			StartCoroutine(FlipCard());
 		}
-
-		/*
-		if (MemoryController.Instance.board.flippedCards < 2)
-		{
-			StartCoroutine(FlipCard());
-		}*/
 	}
 
 	public IEnumerator FlipCard()
