@@ -82,7 +82,7 @@ public class Board :  MonoBehaviour
 		}
 	}
 
-	public int[] GetRandomCard(Card currentCard)
+	public Card GetRandomCard(Card currentCard)
 	{
 		bool value = false;
 		int randomX = 0;
@@ -98,11 +98,7 @@ public class Board :  MonoBehaviour
 				value = true;
 			}
 		}
-		int[] temp = new int[2];
 
-		temp[0] = randomX;
-		temp[1] = randomY;
-
-		return temp;
+		return board[randomX, randomY];
 	}
 }
