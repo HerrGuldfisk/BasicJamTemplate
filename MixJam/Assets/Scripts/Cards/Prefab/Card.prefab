@@ -58,8 +58,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08b149d55c8154f42aea65aee7b2c967, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardHeight: 0
   flipped: 0
   cardEffect: {fileID: 7024837676896022943}
+  cardName: Goblin
 --- !u!114 &7024837676896022943
 MonoBehaviour:
   m_ObjectHideFlags: 0

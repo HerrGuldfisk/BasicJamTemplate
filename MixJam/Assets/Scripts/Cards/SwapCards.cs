@@ -61,5 +61,6 @@ public class SwapCards : CardEffect
 		yield return new WaitForSecondsRealtime(MemoryController.Instance.cardMoveTime * 1.5f);
 		card.LowerCard(MemoryController.Instance.cardRotationTime / 3);
 		other.LowerCard(MemoryController.Instance.cardRotationTime / 3);
+		MemoryController.Instance.effectsDone = true;
 	}
 }

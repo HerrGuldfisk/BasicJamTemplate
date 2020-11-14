@@ -47,6 +47,11 @@ public class GameManager : MonoBehaviour
 		Debug.Log(print);
 	}
 
+	public void Victory()
+	{
+		UI.OpenMenu("InGameMenu");
+	}
+
 	public void OnExit()
 	{
 		if (!menuActive)

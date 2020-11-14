@@ -20,6 +20,8 @@ public class Card : MonoBehaviour
 
 	public CardEffect cardEffect;
 
+	public string cardName;
+
 	private void Start()
 	{
 		animMoveCurve = MemoryController.Instance.animMoveCurve;
@@ -32,7 +34,6 @@ public class Card : MonoBehaviour
 
 	public void Clicked()
 	{
-		Debug.Log(MemoryController.Instance.flippedCards);
 		if (MemoryController.Instance.flippedCards < 2 && flipped == false)
 		{
 			MemoryController.Instance.StoreCards(this);

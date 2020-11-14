@@ -9,7 +9,7 @@ public class Board :  MonoBehaviour
 
 	public List<Card> cards;
 
-	public List<Card> currentCards;
+	private List<Card> currentCards;
 
 	public Card[,] board;
 
