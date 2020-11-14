@@ -1013,9 +1013,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cards:
   - {fileID: 6599294317489977323, guid: ab8335fdbaa8a6648be782bf6decf877, type: 3}
-  - {fileID: 6599294317489977323, guid: ab8335fdbaa8a6648be782bf6decf877, type: 3}
-  - {fileID: 6599294317489977323, guid: ab8335fdbaa8a6648be782bf6decf877, type: 3}
-  - {fileID: 6599294317489977323, guid: ab8335fdbaa8a6648be782bf6decf877, type: 3}
+  - {fileID: 9051512439332618911, guid: bc2f82a935b8ed146b92ad368367d134, type: 3}
+  - {fileID: 3393087210596614002, guid: 07fe65f1573de8542b6daeefa9021322, type: 3}
+  - {fileID: 4168658204250699801, guid: 6e6deb72610806c459e504c70cf9bdd3, type: 3}
   board: {fileID: 0}
   effectsDone: 0
   cardMoveTime: 0.4
