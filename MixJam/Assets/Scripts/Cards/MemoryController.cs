@@ -23,11 +23,9 @@ public class MemoryController : MonoBehaviour
 	}
 	#endregion
 
-
 	public List<Card> cards;
 
 	public Board board;
-
 
 	#region Animation
 	public float cardMoveTime;
@@ -46,8 +44,6 @@ public class MemoryController : MonoBehaviour
 	#endregion
 
 	public int flippedCards = 0;
-
-
 	void Start()
     {
 		board = gameObject.AddComponent<Board>();
@@ -55,12 +51,39 @@ public class MemoryController : MonoBehaviour
 		board.y = 2;
 		board.cards = cards;
 		board.StartUp();
-
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+	Card card1;
+	Card card2;
 
-    }
+	void StoreCards(Card currentFlippedCard)
+	{
+		flippedCards += 1;
+
+		if (flippedCards == 1)
+		{
+			card1 = currentFlippedCard;
+		}
+		else if (flippedCards == 2)
+		{
+			card2 = currentFlippedCard;
+
+			TestCards();
+		}
+	}
+
+	void TestCards()
+	{
+		if (card1.Equals(card2))
+		{
+			board.currentCards.Remove(card1);
+			board.currentCards.Remove(card2);
+		}
+		else
+		{
+			card1.CardEffect().Execute(card2);
+		}
+
+		flippedCards = 0;
+	}
 }
