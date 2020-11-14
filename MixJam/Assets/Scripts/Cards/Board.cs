@@ -82,14 +82,27 @@ public class Board :  MonoBehaviour
 		}
 	}
 
-	public void GetRandomCard()
+	public int[] GetRandomCard(Card currentCard)
 	{
-		int randomX = Random.Range(0, x);
-		int randomY = Random.Range(0, y);
+		bool value = false;
+		int randomX = 0;
+		int randomY = 0;
 
-		if(board[randomX, randomY] != null)
+		while (!value)
 		{
+			randomX = Random.Range(0, x);
+			randomY = Random.Range(0, y);
 
+			if (board[randomX, randomY] != null && board[randomX, randomY].Equals(currentCard))
+			{
+				value = true;
+			}
 		}
+		int[] temp = new int[2];
+
+		temp[0] = randomX;
+		temp[1] = randomY;
+
+		return temp;
 	}
 }
