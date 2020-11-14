@@ -81,7 +81,7 @@ public class MemoryController : MonoBehaviour
 		}
 		else
 		{
-			card1.CardEffect().Execute(card2);
+			//card1.CardEffect().Execute(card2);
 		}
 
 		flippedCards = 0;
