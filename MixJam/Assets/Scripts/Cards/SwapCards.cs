@@ -6,8 +6,6 @@ using UnityEngine;
 public class SwapCards : CardEffect
 {
 
-	List<Card> currentCards;
-
 	Card card;
 
 	Board board;
@@ -16,7 +14,6 @@ public class SwapCards : CardEffect
 	{
 		card = GetComponent<Card>();
 		board = MemoryController.Instance.board;
-		currentCards = MemoryController.Instance.board.currentCards;
 
 
 		Card otherCard = board.GetRandomCard(card);
@@ -27,24 +24,17 @@ public class SwapCards : CardEffect
 
 	private void SwapValues(Card card, Card other)
 	{
-		/*Card temp = cards[cards.IndexOf(card)];
-		cards[cards.IndexOf(card)] = cards[cards.IndexOf(other)];
-		cards[cards.IndexOf(other)] = temp;*/
+		int[] tempCard = new int[2];
+		int[] tempOther = new int[2];
 
 		for (int j = 0; j < board.y; j++)
 		{
-			int[] tempCard = new int[2];
-			int[] tempOther = new int[2];
-			Card temporary;
-
 			for (int i = 0; i < board.x; i++){
 
 				if (board.board[i,j].Equals(card))
 				{
 					tempCard[0] = i;
 					tempCard[1] = j;
-
-					temporary
 				}
 
 				if (board.board[i, j].Equals(other))
@@ -53,12 +43,23 @@ public class SwapCards : CardEffect
 					tempOther[1] = j;
 				}
 			}
-
-
-
 		}
 
-		//  Debug.Log(x);
+		board.board[tempCard[0], tempCard[1]] = other;
+		board.board[tempOther[0], tempOther[1]] = card;
+
+		StartCoroutine(MoveCards(card, other, tempCard, tempOther));
 	}
 
+	private IEnumerator MoveCards(Card card, Card other, int[] tempCard, int[] tempOther)
+	{
+		card.RaiseCard(other.cardHeight, MemoryController.Instance.cardRotationTime / 3);
+		other.RaiseCard(other.cardHeight, MemoryController.Instance.cardRotationTime / 3);
+		yield return new WaitForSecondsRealtime(MemoryController.Instance.cardRotationTime / 2);
+		card.MoveTo(tempOther[0], tempOther[1]);
+		other.MoveTo(tempCard[0], tempCard[1]);
+		yield return new WaitForSecondsRealtime(MemoryController.Instance.cardMoveTime * 1.5f);
+		card.LowerCard(MemoryController.Instance.cardRotationTime / 3);
+		other.LowerCard(MemoryController.Instance.cardRotationTime / 3);
+	}
 }
