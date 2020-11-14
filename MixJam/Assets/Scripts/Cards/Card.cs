@@ -32,7 +32,13 @@ public class Card : MonoBehaviour
 
 	public void Clicked()
 	{
-		StartCoroutine(FlipCard());
+		Debug.Log(MemoryController.Instance.flippedCards);
+		if (MemoryController.Instance.flippedCards < 2 && flipped == false)
+		{
+			MemoryController.Instance.StoreCards(this);
+			StartCoroutine(FlipCard());
+		}
+
 		/*
 		if (MemoryController.Instance.board.flippedCards < 2)
 		{
@@ -40,7 +46,7 @@ public class Card : MonoBehaviour
 		}*/
 	}
 
-	private IEnumerator FlipCard()
+	public IEnumerator FlipCard()
 	{
 		LeanTween.moveZ(gameObject, cardHeight, MemoryController.Instance.cardRotationTime / 3).setEase(riseCurve);
 		yield return new WaitForSecondsRealtime(MemoryController.Instance.cardRotationTime / 9);

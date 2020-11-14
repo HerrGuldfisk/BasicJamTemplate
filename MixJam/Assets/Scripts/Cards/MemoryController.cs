@@ -56,7 +56,7 @@ public class MemoryController : MonoBehaviour
 	Card card1;
 	Card card2;
 
-	void StoreCards(Card currentFlippedCard)
+	public void StoreCards(Card currentFlippedCard)
 	{
 		flippedCards += 1;
 
@@ -79,11 +79,13 @@ public class MemoryController : MonoBehaviour
 			board.currentCards.Remove(card1);
 			board.currentCards.Remove(card2);
 		}
-		else
+		/*else
 		{
-			//card1.CardEffect().Execute(card2);
-		}
+			card1.CardEffect().Execute(card2);
+		}*/
 
+		card1.StartCoroutine(card1.FlipCard());
+		card2.StartCoroutine(card2.FlipCard());
 		flippedCards = 0;
 	}
 }
