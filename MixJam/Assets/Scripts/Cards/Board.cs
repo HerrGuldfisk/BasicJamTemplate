@@ -85,6 +85,11 @@ public class Board :  MonoBehaviour
 	public void GetRandomCard()
 	{
 		int randomX = Random.Range(0, x);
-		int randomY =
+		int randomY = Random.Range(0, y);
+
+		if(board[randomX, randomY] != null)
+		{
+
+		}
 	}
 }
