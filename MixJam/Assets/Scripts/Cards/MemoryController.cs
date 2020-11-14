@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -130,13 +131,19 @@ public class MemoryController : MonoBehaviour
 		}
 		else
 		{
-			// The cards were not the same, run their effects
-			StartCoroutine(RunCardEffects());
-			card1.StartCoroutine(card1.FlipCard());
-			card2.StartCoroutine(card2.FlipCard());
+			StartCoroutine(ResetFlip());
 		}
 
 		flippedCards = 0;
+	}
+
+	private IEnumerator ResetFlip()
+	{
+		yield return new WaitForSecondsRealtime(cardRotationTime * 3f);
+		// The cards were not the same, run their effects
+		StartCoroutine(RunCardEffects());
+		card1.StartCoroutine(card1.FlipCard());
+		card2.StartCoroutine(card2.FlipCard());
 	}
 
 	private IEnumerator RunCardEffects()
