@@ -14,7 +14,7 @@ public class Card : MonoBehaviour
 
 	AnimationCurve fallCurve;
 
-	float cardHeight;
+	public float cardHeight;
 
 	public bool flipped;
 
