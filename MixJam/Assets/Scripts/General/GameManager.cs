@@ -50,7 +50,8 @@ public class GameManager : MonoBehaviour
 			menuActive = true;
 			onPause.Invoke();
 			UI.OpenMenu("MainMenu");
-			UI.currentlyActive.transform.GetChild(0).GetComponent<Button>().Select();
+
+			// UI.currentlyActive.transform.GetChild(0).GetComponent<Button>().Select();
 		}
 		else
 		{

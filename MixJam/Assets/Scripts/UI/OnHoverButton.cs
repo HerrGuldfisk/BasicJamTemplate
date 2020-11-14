@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class OnHoverButton : MonoBehaviour, ISelectHandler, IDeselectHandler
+public class OnHoverButton : MonoBehaviour, ISelectHandler, IDeselectHandler, IPointerEnterHandler, IPointerExitHandler
 {
 	private Button button;
 
@@ -27,6 +27,18 @@ public class OnHoverButton : MonoBehaviour, ISelectHandler, IDeselectHandler
 
 	public void OnDeselect(BaseEventData eventData)
 	{
+		LeanTween.scale(gameObject, new Vector3(1f, 1f, 1f), 0.2f).setEase(curveDeselect);
+	}
+
+	public void OnPointerEnter(PointerEventData eventData)
+	{
+		EventSystem.current.SetSelectedGameObject(null);
+		LeanTween.scale(gameObject, new Vector3(1.1f, 1.1f, 1.1f), 0.2f).setEase(curveSelect);
+	}
+
+	public void OnPointerExit(PointerEventData eventData)
+	{
+
 		LeanTween.scale(gameObject, new Vector3(1f, 1f, 1f), 0.2f).setEase(curveDeselect);
 	}
 }
