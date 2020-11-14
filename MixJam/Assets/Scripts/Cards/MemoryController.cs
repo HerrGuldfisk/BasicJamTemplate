@@ -30,7 +30,7 @@ public class MemoryController : MonoBehaviour
 	private int boardX = 4;
 	private int boardY = 2;
 
-	private bool effectsDone;
+	public bool effectsDone;
 
 	#region Animation
 	public float cardMoveTime;
@@ -84,13 +84,27 @@ public class MemoryController : MonoBehaviour
 
 	private void TestCards()
 	{
+		// Compare the two cards, are they the same?
 		if (card1.Equals(card2))
 		{
-			board.currentCards.Remove(card1);
-			board.currentCards.Remove(card2);
+			// The cards were the same....
+			// Look for the two cards in the board array
+			for (int j = 0; j < board.y; j++)
+			{
+				for (int i = 0; i < board.x; i++)
+				{
+					// Remove the cards when found
+					if (board.board[i, j].Equals(card1) || board.board[i,j].Equals(card2))
+					{
+						board.board[i, j].gameObject.SetActive(false);
+						board.board[i, j] = null;
+					}
+				}
+			}
 		}
 		else
 		{
+			// The cards were not the same, run their effects
 			StartCoroutine(RunCardEffects());
 		}
 
