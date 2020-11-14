@@ -30,6 +30,8 @@ public class MemoryController : MonoBehaviour
 	private int boardX = 4;
 	private int boardY = 2;
 
+	private bool effectsDone;
+
 	#region Animation
 	public float cardMoveTime;
 
@@ -87,13 +89,23 @@ public class MemoryController : MonoBehaviour
 			board.currentCards.Remove(card1);
 			board.currentCards.Remove(card2);
 		}
-		/*else
+		else
 		{
-			card1.CardEffect().Execute(card2);
-		}*/
+			StartCoroutine(RunCardEffects());
+		}
 
 		card1.StartCoroutine(card1.FlipCard());
 		card2.StartCoroutine(card2.FlipCard());
 		flippedCards = 0;
+	}
+
+	private IEnumerator RunCardEffects()
+	{
+		card1.CardEffect();
+		yield return new WaitUntil(() => effectsDone == true);
+		effectsDone = false;
+		card2.CardEffect();
+		yield return new WaitUntil(() => effectsDone == true);
+		effectsDone = false;
 	}
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class SwapCards : CardEffect
 {
 
-	List<Card> cards;
+	List<Card> currentCards;
 
 	Card card;
 
@@ -16,7 +16,7 @@ public class SwapCards : CardEffect
 	{
 		card = GetComponent<Card>();
 		board = MemoryController.Instance.board;
-		cards = MemoryController.Instance.board.currentCards;
+		currentCards = MemoryController.Instance.board.currentCards;
 
 
 		Card otherCard = board.GetRandomCard(card);
@@ -31,18 +31,34 @@ public class SwapCards : CardEffect
 		cards[cards.IndexOf(card)] = cards[cards.IndexOf(other)];
 		cards[cards.IndexOf(other)] = temp;*/
 
-		//cards.
-
-		for (int i = 0; i < cards.Count; i++)
+		for (int j = 0; j < board.y; j++)
 		{
-			if(cards[i] == card)
-			{
-				Debug.Log(card);
+			int[] tempCard = new int[2];
+			int[] tempOther = new int[2];
+			Card temporary;
+
+			for (int i = 0; i < board.x; i++){
+
+				if (board.board[i,j].Equals(card))
+				{
+					tempCard[0] = i;
+					tempCard[1] = j;
+
+					temporary
+				}
+
+				if (board.board[i, j].Equals(other))
+				{
+					tempOther[0] = i;
+					tempOther[1] = j;
+				}
 			}
+
+
+
 		}
 
-		int x = cards.IndexOf(card);
-
-		Debug.Log(x);
+		//  Debug.Log(x);
 	}
+
 }

@@ -11,7 +11,7 @@ public class Board :  MonoBehaviour
 
 	public List<Card> currentCards;
 
-	Card[,] board;
+	public Card[,] board;
 
 
 	public Board(int x, int y, List<Card> cards)
@@ -24,11 +24,7 @@ public class Board :  MonoBehaviour
 
 	public void StartUp()
 	{
-		Debug.Log(cards);
-
 		currentCards = new List<Card>();
-
-		Debug.Log(currentCards);
 
 		board = new Card[x, y];
 
