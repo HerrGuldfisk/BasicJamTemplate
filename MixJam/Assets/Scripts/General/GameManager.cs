@@ -36,8 +36,6 @@ public class GameManager : MonoBehaviour
 	public bool gameInputAllowed = true;
 
 
-
-
 	private void Start()
 	{
 		UIManager.Instance.onResume.AddListener(OnExit);

@@ -28,7 +28,17 @@ public class MemoryController : MonoBehaviour
 
 	public Board board;
 
-    void Start()
+	public float cardMoveTime;
+
+	public AnimationCurve animMoveCurve;
+
+	public float cardRotationTime;
+
+	public AnimationCurve animFlipCurve;
+
+	public AnimationCurve riseAndFall;
+
+	void Start()
     {
 
     }
