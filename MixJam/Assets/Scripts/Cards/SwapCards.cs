@@ -21,13 +21,28 @@ public class SwapCards : CardEffect
 
 		Card otherCard = board.GetRandomCard(card);
 
-		SwapValues();
+		SwapValues(card, otherCard);
 
 	}
 
-	private void SwapValues()
+	private void SwapValues(Card card, Card other)
 	{
-		Card temp = cards[cards.IndexOf(card)];
+		/*Card temp = cards[cards.IndexOf(card)];
+		cards[cards.IndexOf(card)] = cards[cards.IndexOf(other)];
+		cards[cards.IndexOf(other)] = temp;*/
 
+		//cards.
+
+		for (int i = 0; i < cards.Count; i++)
+		{
+			if(cards[i] == card)
+			{
+				Debug.Log(card);
+			}
+		}
+
+		int x = cards.IndexOf(card);
+
+		Debug.Log(x);
 	}
 }
