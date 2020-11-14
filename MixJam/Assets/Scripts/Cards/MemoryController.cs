@@ -59,7 +59,9 @@ public class MemoryController : MonoBehaviour
 		board = gameObject.AddComponent<Board>();
 		board.x = boardX;
 		board.y = boardY;
-		board.cards = cards;
+
+		board.cards = new List<Card>(cards);
+
 		board.StartUp();
 	}
 
@@ -130,8 +132,8 @@ public class MemoryController : MonoBehaviour
 		{
 			// The cards were not the same, run their effects
 			StartCoroutine(RunCardEffects());
-			// card1.StartCoroutine(card1.FlipCard());
-			// card2.StartCoroutine(card2.FlipCard());
+			card1.StartCoroutine(card1.FlipCard());
+			card2.StartCoroutine(card2.FlipCard());
 		}
 
 		flippedCards = 0;

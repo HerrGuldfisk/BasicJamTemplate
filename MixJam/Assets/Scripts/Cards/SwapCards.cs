@@ -31,13 +31,13 @@ public class SwapCards : CardEffect
 		{
 			for (int i = 0; i < board.x; i++){
 
-				if (board.board[i,j].Equals(card))
+				if (board.board[i,j] == card)
 				{
 					tempCard[0] = i;
 					tempCard[1] = j;
 				}
 
-				if (board.board[i, j].Equals(other))
+				if (board.board[i, j] == other)
 				{
 					tempOther[0] = i;
 					tempOther[1] = j;

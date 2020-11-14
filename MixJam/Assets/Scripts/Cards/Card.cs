@@ -29,6 +29,8 @@ public class Card : MonoBehaviour
 		riseCurve = MemoryController.Instance.riseCurve;
 		fallCurve = MemoryController.Instance.fallCurve;
 		cardHeight = MemoryController.Instance.cardHeight;
+
+		cardName = gameObject.name;
 	}
 
 
