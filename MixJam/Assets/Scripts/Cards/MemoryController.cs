@@ -28,6 +28,8 @@ public class MemoryController : MonoBehaviour
 
 	public Board board;
 
+
+	#region Animation
 	public float cardMoveTime;
 
 	public AnimationCurve animMoveCurve;
@@ -41,9 +43,18 @@ public class MemoryController : MonoBehaviour
 	public AnimationCurve fallCurve;
 
 	public float cardHeight;
+	#endregion
+
+	public int flippedCards = 0;
+
 
 	void Start()
     {
+		board = gameObject.AddComponent<Board>();
+		board.x = 4;
+		board.y = 2;
+		board.cards = cards;
+		board.StartUp();
 
     }
 

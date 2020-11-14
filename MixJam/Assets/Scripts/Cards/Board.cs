@@ -2,18 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Board : MonoBehaviour
+public class Board :  MonoBehaviour
 {
 	public int x;
 	public int y;
 
 	public List<Card> cards;
 
-	public List<Card> currentCards;
+	private List<Card> currentCards;
 
 	Card[,] board;
-
-	public int flippedCards = 0;
 
 
 	public Board(int x, int y, List<Card> cards)
@@ -24,9 +22,14 @@ public class Board : MonoBehaviour
 		this.cards = cards;
 	}
 
+	public void StartUp()
+	{
+		Debug.Log(cards);
 
-	void Start()
-    {
+		currentCards = new List<Card>();
+
+		Debug.Log(currentCards);
+
 		board = new Card[x, y];
 
 		int numPlaces = x * y;
@@ -43,8 +46,6 @@ public class Board : MonoBehaviour
 			cards.RemoveAt(randomNumber);
 		}
 
-		currentCards = cards;
-
 		Shuffle();
 
 		Deal();
@@ -58,7 +59,7 @@ public class Board : MonoBehaviour
 		{
 			for (int i = 0; i < x; i++)
 			{
-				board[i, j] = currentCards[pos];
+				board[i, j] = Instantiate(currentCards[pos], transform);
 
 				board[i, j].MoveTo(i, j);
 
@@ -80,12 +81,4 @@ public class Board : MonoBehaviour
 			currentCards[randomIndex] = temp;
 		}
 	}
-
-
-
-
-    void Update()
-    {
-
-    }
 }

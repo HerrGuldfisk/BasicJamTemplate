@@ -54,6 +54,7 @@ public class Card : MonoBehaviour
 		}
 		yield return new WaitForSecondsRealtime(MemoryController.Instance.cardRotationTime * 7 / 9);
 		LeanTween.moveZ(gameObject, 0, MemoryController.Instance.cardRotationTime / 3).setEase(fallCurve);
+		transform.position = new Vector3(transform.position.x, transform.position.y, 0);
 	}
 
 	public void MoveTo(float x, float y)
