@@ -10,31 +10,50 @@ public class Card : MonoBehaviour
 
 	AnimationCurve animFlipCurve;
 
-	AnimationCurve riseAndFall;
+	AnimationCurve riseCurve;
+
+	AnimationCurve fallCurve;
+
+	float cardHeight;
+
+	public bool flipped;
 
 	private void Start()
 	{
 		animMoveCurve = MemoryController.Instance.animMoveCurve;
 		animFlipCurve = MemoryController.Instance.animFlipCurve;
-		riseAndFall = MemoryController.Instance.riseAndFall;
+		riseCurve = MemoryController.Instance.riseCurve;
+		fallCurve = MemoryController.Instance.fallCurve;
+		cardHeight = MemoryController.Instance.cardHeight;
 	}
 
 
 	public void Clicked()
 	{
+		StartCoroutine(FlipCard());
+		/*
 		if (MemoryController.Instance.board.flippedCards < 2)
 		{
 			StartCoroutine(FlipCard());
-		}
+		}*/
 	}
 
 	private IEnumerator FlipCard()
 	{
-		LeanTween.moveZ(gameObject, 0.8f, MemoryController.Instance.cardRotationTime).setEase(riseAndFall);
-
-
-		LeanTween.rotate(gameObject, new Vector3(180, 0, 0), MemoryController.Instance.cardRotationTime).setEase(animFlipCurve);
-		yield return new WaitForSecondsRealtime(MemoryController.Instance.cardRotationTime);
+		LeanTween.moveZ(gameObject, cardHeight, MemoryController.Instance.cardRotationTime / 3).setEase(riseCurve);
+		yield return new WaitForSecondsRealtime(MemoryController.Instance.cardRotationTime / 9);
+		if(flipped == false)
+		{
+			LeanTween.rotate(gameObject, new Vector3(0, 180.1f, 0), MemoryController.Instance.cardRotationTime).setEase(animFlipCurve);
+			flipped = true;
+		}
+		else
+		{
+			LeanTween.rotate(gameObject, new Vector3(0, 0, 0), MemoryController.Instance.cardRotationTime).setEase(animFlipCurve);
+			flipped = false;
+		}
+		yield return new WaitForSecondsRealtime(MemoryController.Instance.cardRotationTime * 7 / 9);
+		LeanTween.moveZ(gameObject, 0, MemoryController.Instance.cardRotationTime / 3).setEase(fallCurve);
 	}
 
 	public void MoveTo(float x, float y)

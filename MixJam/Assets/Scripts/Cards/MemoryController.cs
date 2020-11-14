@@ -36,7 +36,11 @@ public class MemoryController : MonoBehaviour
 
 	public AnimationCurve animFlipCurve;
 
-	public AnimationCurve riseAndFall;
+	public AnimationCurve riseCurve;
+
+	public AnimationCurve fallCurve;
+
+	public float cardHeight;
 
 	void Start()
     {
