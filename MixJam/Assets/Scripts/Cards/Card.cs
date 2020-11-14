@@ -42,22 +42,37 @@ public class Card : MonoBehaviour
 
 	public IEnumerator FlipCard()
 	{
-		LeanTween.moveZ(gameObject, cardHeight, MemoryController.Instance.cardRotationTime / 3).setEase(riseCurve);
+		RaiseCard(cardHeight, MemoryController.Instance.cardRotationTime / 3);
 		yield return new WaitForSecondsRealtime(MemoryController.Instance.cardRotationTime / 9);
-		if(flipped == false)
+		RotateCard(MemoryController.Instance.cardRotationTime);
+		yield return new WaitForSecondsRealtime(MemoryController.Instance.cardRotationTime * 7 / 9);
+		LowerCard(MemoryController.Instance.cardRotationTime / 3);
+		yield return new WaitForSecondsRealtime(MemoryController.Instance.cardRotationTime / 2.9f);
+		transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+	}
+
+	public void RaiseCard(float height, float time)
+	{
+		LeanTween.moveZ(gameObject, height, time).setEase(riseCurve);
+	}
+
+	public void RotateCard(float time)
+	{
+		if (flipped == false)
 		{
-			LeanTween.rotate(gameObject, new Vector3(0, 180.1f, 0), MemoryController.Instance.cardRotationTime).setEase(animFlipCurve);
+			LeanTween.rotate(gameObject, new Vector3(0, 180.1f, 0), time).setEase(animFlipCurve);
 			flipped = true;
 		}
 		else
 		{
-			LeanTween.rotate(gameObject, new Vector3(0, 0, 0), MemoryController.Instance.cardRotationTime).setEase(animFlipCurve);
+			LeanTween.rotate(gameObject, new Vector3(0, 0, 0), time).setEase(animFlipCurve);
 			flipped = false;
 		}
-		yield return new WaitForSecondsRealtime(MemoryController.Instance.cardRotationTime * 7 / 9);
-		LeanTween.moveZ(gameObject, 0, MemoryController.Instance.cardRotationTime / 3).setEase(fallCurve);
-		yield return new WaitForSecondsRealtime(MemoryController.Instance.cardRotationTime / 2.9f);
-		transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+	}
+
+	public void LowerCard(float time)
+	{
+		LeanTween.moveZ(gameObject, 0, time).setEase(fallCurve);
 	}
 
 	public void MoveTo(float x, float y)
