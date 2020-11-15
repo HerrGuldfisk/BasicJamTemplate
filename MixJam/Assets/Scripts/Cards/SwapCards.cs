@@ -5,16 +5,9 @@ using UnityEngine;
 
 public class SwapCards : CardEffect
 {
-
-	Card card;
-
-	Board board;
-
 	public override void Execute()
 	{
-		card = GetComponent<Card>();
-		board = MemoryController.Instance.board;
-
+		GetCardBoard();
 
 		Card otherCard = board.GetRandomCard(card);
 
@@ -49,18 +42,5 @@ public class SwapCards : CardEffect
 		board.board[tempOther[0], tempOther[1]] = card;
 
 		StartCoroutine(MoveCards(card, other, tempCard, tempOther));
-	}
-
-	private IEnumerator MoveCards(Card card, Card other, int[] tempCard, int[] tempOther)
-	{
-		card.RaiseCard(other.cardHeight, MemoryController.Instance.cardRotationTime / 3);
-		other.RaiseCard(other.cardHeight, MemoryController.Instance.cardRotationTime / 3);
-		yield return new WaitForSecondsRealtime(MemoryController.Instance.cardRotationTime / 2);
-		card.MoveTo(tempOther[0], tempOther[1]);
-		other.MoveTo(tempCard[0], tempCard[1]);
-		yield return new WaitForSecondsRealtime(MemoryController.Instance.cardMoveTime * 1.5f);
-		card.LowerCard(MemoryController.Instance.cardRotationTime / 3);
-		other.LowerCard(MemoryController.Instance.cardRotationTime / 3);
-		MemoryController.Instance.effectsDone = true;
 	}
 }
