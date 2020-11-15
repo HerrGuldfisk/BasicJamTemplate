@@ -57,6 +57,14 @@ public class MemoryController : MonoBehaviour
 			Destroy(board);
 		}
 
+		foreach(Transform child in transform)
+		{
+			if (child.GetComponent<Card>())
+			{
+				Destroy(child.gameObject);
+			}
+		}
+
 		board = gameObject.AddComponent<Board>();
 		board.x = boardX;
 		board.y = boardY;
