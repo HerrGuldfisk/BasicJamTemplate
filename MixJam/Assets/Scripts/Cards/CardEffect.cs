@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,10 +34,5 @@ public abstract class CardEffect: MonoBehaviour
 	public IEnumerator MoveCards(Card[] cards)
 	{
 		yield return null;
-	}
-
-	public IEnumerator WaitForTime(float time)
-	{
-		yield return new WaitForSecondsRealtime(time);
 	}
 }
