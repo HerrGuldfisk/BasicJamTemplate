@@ -55,8 +55,7 @@ public class UIManager : MonoBehaviour
 
 		GameManager.Instance.OnExit();
 
-		// currentlyActive.SetActive(false);
-
+		currentlyActive.SetActive(false);
 
 		MemoryController.Instance.ResetGame();
 	}

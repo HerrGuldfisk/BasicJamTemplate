@@ -50,6 +50,12 @@ public class MemoryController : MonoBehaviour
 	#endregion
 
 	public int flippedCards = 0;
+
+	public void FromSlider(float sliderValue)
+	{
+		boardY = (int) sliderValue;
+	}
+
 	public void ResetGame()
     {
 		if (GetComponent<Board>())
