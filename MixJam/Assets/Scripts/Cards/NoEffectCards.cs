@@ -13,7 +13,7 @@ public class NoEffectCards : CardEffect
 
 	private IEnumerator NoEffect(float time)
 	{
-		yield return new WaitForSecondsRealtime(time * 3);
+		yield return new WaitForSecondsRealtime(time * 2);
 		card.LowerCard(MemoryController.Instance.cardRotationTime / 3);
 		yield return new WaitForSecondsRealtime(MemoryController.Instance.cardRotationTime / 3);
 		Camera.main.GetComponent<CameraShake>().Shake(0.3f, 0.02f);
