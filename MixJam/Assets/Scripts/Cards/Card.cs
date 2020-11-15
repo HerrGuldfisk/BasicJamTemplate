@@ -33,13 +33,15 @@ public class Card : MonoBehaviour
 		cardName = gameObject.name;
 	}
 
+    private void OnMouseEnter()
+    {
+		AudioManager.Instance.Play("effect_hover");
+	}
 
-	public void Clicked()
+    public void Clicked()
 	{
 		if (MemoryController.Instance.flippedCards < 2 && flipped == false)
 		{
-			// play audio
-			AudioManager.Instance.Play("effect_flip");
 			MemoryController.Instance.StoreCards(this);
 			StartCoroutine(FlipCard());
 		}
@@ -67,11 +69,15 @@ public class Card : MonoBehaviour
 		if (flipped == false)
 		{
 			LeanTween.rotate(gameObject, new Vector3(0, 180.1f, 0), time).setEase(animFlipCurve);
+			// play audio
+			AudioManager.Instance.Play("effect_flip");
 			flipped = true;
 		}
 		else
 		{
 			LeanTween.rotate(gameObject, new Vector3(0, 0, 0), time).setEase(animFlipCurve);
+			// play audio
+			AudioManager.Instance.Play("effect_flip");
 			flipped = false;
 		}
 	}

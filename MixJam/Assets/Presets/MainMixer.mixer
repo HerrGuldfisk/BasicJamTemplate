@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!244 &-8807936349788366315
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 56b7ff55d35eca14294e32387354e9a5
+  m_EffectName: Receive
+  m_MixLevel: 3759785eef8ff1d4cacc4ab75f429349
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!243 &-6457931958452085021
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -54,6 +68,20 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!244 &-3627482762596342431
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 9013ea34d9087584c96f832747b9f3d7
+  m_EffectName: Send
+  m_MixLevel: e47f66f49c795bb4a977637de12b1a62
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &-1420447813396419560
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -64,6 +92,20 @@ AudioMixerEffectController:
   m_EffectID: 556227bed0e9e8345b846d6bb72aa8c5
   m_EffectName: Attenuation
   m_MixLevel: 943062d90f5077043b30a817bf6c5aaf
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &-682966426536309424
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 4be7c4ec89b43ee43a265421da3e2760
+  m_EffectName: Send
+  m_MixLevel: 6069c953a979b19418076bd1ea4ef42d
   m_Parameters: []
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
@@ -158,6 +200,20 @@ AudioMixerSnapshotController:
     7e8d0d491e9a191469b7003a157df858: 0
     91532c3edab065049a723d1d4bb62950: 0
   m_TransitionOverrides: {}
+--- !u!244 &354791022133242726
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 18446ccb01db4d0459f6266177404d7b
+  m_EffectName: Receive
+  m_MixLevel: 9ef66d4a117452244ab9e594898d2244
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!243 &2024049351113826497
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
