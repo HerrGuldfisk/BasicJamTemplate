@@ -53,6 +53,7 @@ public class Card : MonoBehaviour
 		yield return new WaitForSecondsRealtime(MemoryController.Instance.cardRotationTime * 7 / 9);
 		LowerCard(MemoryController.Instance.cardRotationTime / 3);
 		yield return new WaitForSecondsRealtime(MemoryController.Instance.cardRotationTime / 2.9f);
+		Camera.main.GetComponent<CameraShake>().Shake(0.3f, 0.02f);
 		transform.position = new Vector3(transform.position.x, transform.position.y, 0);
 	}
 
@@ -75,9 +76,9 @@ public class Card : MonoBehaviour
 		}
 	}
 
-	public void LowerCard(float time)
+	public void LowerCard(float lowerTime)
 	{
-		LeanTween.moveZ(gameObject, 0, time).setEase(fallCurve);
+		LeanTween.moveZ(gameObject, 0, lowerTime).setEase(fallCurve);
 	}
 
 	public void MoveTo(float x, float y)

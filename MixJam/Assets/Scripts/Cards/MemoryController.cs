@@ -150,12 +150,16 @@ public class MemoryController : MonoBehaviour
 		yield return new WaitForSecondsRealtime(cardRotationTime * 3f);
 		// The cards were not the same, run their effects
 		StartCoroutine(RunCardEffects());
-		card1.StartCoroutine(card1.FlipCard());
-		card2.StartCoroutine(card2.FlipCard());
+
 	}
 
 	private IEnumerator RunCardEffects()
 	{
+		yield return StartCoroutine(PrepareCards());
+
+		//card1.StartCoroutine(card1.FlipCard());
+		//card2.StartCoroutine(card2.FlipCard());
+
 		card1.CardEffect();
 		yield return new WaitUntil(() => effectsDone == true);
 		effectsDone = false;
@@ -167,5 +171,15 @@ public class MemoryController : MonoBehaviour
 		card2 = null;
 
 		GameManager.Instance.gameInputAllowed = true;
+	}
+
+	private IEnumerator PrepareCards()
+	{
+		card1.RaiseCard(cardHeight, cardRotationTime / 3);
+		card2.RaiseCard(cardHeight, cardRotationTime / 3);
+		yield return new WaitForSecondsRealtime(cardRotationTime / 9);
+		card1.RotateCard(cardRotationTime);
+		card2.RotateCard(cardRotationTime);
+		yield return new WaitForSecondsRealtime(cardRotationTime * 1);
 	}
 }

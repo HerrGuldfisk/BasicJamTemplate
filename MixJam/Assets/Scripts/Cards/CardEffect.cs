@@ -29,6 +29,8 @@ public abstract class CardEffect: MonoBehaviour
 		card.LowerCard(MemoryController.Instance.cardRotationTime / 3);
 		other.LowerCard(MemoryController.Instance.cardRotationTime / 3);
 		MemoryController.Instance.effectsDone = true;
+		yield return new WaitForSecondsRealtime(MemoryController.Instance.cardRotationTime / 3);
+		Camera.main.GetComponent<CameraShake>().Shake(0.3f, 0.02f);
 	}
 
 	public IEnumerator MoveCards(Card[] cards)

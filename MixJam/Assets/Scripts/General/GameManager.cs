@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
 
 	public void Victory()
 	{
+		menuActive = true;
 		UI.OpenMenu("InGameMenu");
 	}
 
