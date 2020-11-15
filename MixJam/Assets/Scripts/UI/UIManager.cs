@@ -53,7 +53,10 @@ public class UIManager : MonoBehaviour
 	{
 		Debug.Log("New Game");
 
-		currentlyActive.SetActive(false);
+		GameManager.Instance.OnExit();
+
+		// currentlyActive.SetActive(false);
+
 
 		MemoryController.Instance.ResetGame();
 	}

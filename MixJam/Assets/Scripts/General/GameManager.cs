@@ -59,13 +59,15 @@ public class GameManager : MonoBehaviour
 			menuActive = true;
 			onPause.Invoke();
 			UI.OpenMenu("MainMenu");
+			gameInputAllowed = false;
 
-			// UI.currentlyActive.transform.GetChild(0).GetComponent<Button>().Select();
 		}
 		else
 		{
 			if (menuActive)
 			{
+				gameInputAllowed = true;
+
 				if (UI.currentlyActive.name.Equals("MainMenu") || UI.currentlyActive.name.Equals("InGameMenu"))
 				{
 					menuActive = false;
@@ -79,6 +81,8 @@ public class GameManager : MonoBehaviour
 				}
 			}
 		}
+
+		Debug.Log(gameInputAllowed);
 	}
 
 	public void ExitGame()
