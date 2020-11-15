@@ -39,7 +39,7 @@ public class Board :  MonoBehaviour
 			currentCards.Add(cards[randomNumber]);
 			currentCards.Add(cards[randomNumber]);
 
-			cards.RemoveAt(randomNumber);
+			// cards.RemoveAt(randomNumber);
 		}
 
 		Shuffle();
