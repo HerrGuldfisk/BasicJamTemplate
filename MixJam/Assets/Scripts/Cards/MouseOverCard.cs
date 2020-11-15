@@ -6,42 +6,56 @@ using UnityEngine.EventSystems;
 public class MouseOverCard : MonoBehaviour
 {
 	Vector3 scale;
+	[HideInInspector]
+	private bool hoverable = true;
+	private bool newInput = true;
 
 	private void Start()
 	{
 		scale = transform.localScale;
 	}
 
-	public void OnMouseOver()
+	public void MouseHover()
 	{
-
-		if (GetComponentInParent<Card>().hoverable == false)
+		if(hoverable && newInput && GetComponentInParent<Card>().flipped == false)
 		{
-			return;
+			newInput = false;
+			StartCoroutine(Hover());
 		}
 
-		AudioManager.Instance.Play("effect_hover");
-
-		HoverAnimation();
-
-		GetComponentInParent<Card>().hoverable = false;
 	}
 
 	public void OnMouseLeave()
 	{
+		StopCoroutine(Hover());
+		newInput = true;
 		HoverAnimation();
-		GetComponentInParent<Card>().hoverable = true;
+		hoverable = true;
 	}
+
+	public IEnumerator Hover()
+	{
+		AudioManager.Instance.Play("effect_hover");
+
+		HoverAnimation();
+
+		hoverable = false;
+
+		yield return new WaitForSeconds(MemoryController.Instance.cardMoveTime);
+
+		newInput = true;
+	}
+
 
 	public void HoverAnimation()
 	{
-		if (GetComponentInParent<Card>().hoverable)
+		if (hoverable)
 		{
-			LeanTween.scale(gameObject, new Vector3(scale.x * 1.2f, scale.y, scale.z * 1.2f), 0.3f).setEaseInCubic();
+			LeanTween.scale(gameObject, new Vector3(scale.x * 1.1f, scale.y, scale.z * 1.1f), MemoryController.Instance.cardMoveTime / 3).setEaseInOutSine();
 		}
 		else
 		{
-			LeanTween.scale(gameObject, scale, 0.3f).setEaseInCubic();
+			LeanTween.scale(gameObject, scale, MemoryController.Instance.cardMoveTime / 3).setEaseInOutSine();
 		}
 
 	}

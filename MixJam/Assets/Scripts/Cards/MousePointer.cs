@@ -7,7 +7,8 @@ public class MousePointer : MonoBehaviour
 {
 	public Vector2 mousePos;
 
-	bool hover;
+	public MouseOverCard lastHoveredCard = null;
+
 
     // Start is called before the first frame update
     void Start()
@@ -32,19 +33,16 @@ public class MousePointer : MonoBehaviour
 		if (Physics.Raycast(ray, out hit, 100f))
 		{
 			// If the clicked object is a card.
-			if (hit.transform.GetComponentInParent<Card>())
+			if (hit.transform.GetComponent<MouseOverCard>())
 			{
-				if (!hover)
-				{
-					AudioManager.Instance.Play("effect_hover");
-				}
-				hover = true;
+				hit.transform.GetComponent<MouseOverCard>().MouseHover();
+				lastHoveredCard = hit.transform.GetComponent<MouseOverCard>();
 			}
 		}
-		else
+		else if(lastHoveredCard)
 		{
-			Debug.Log("Not hovering");
-			hover = false;
+			lastHoveredCard.OnMouseLeave();
+			lastHoveredCard = null;
 		}
 	}
 

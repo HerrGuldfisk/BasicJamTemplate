@@ -82,8 +82,6 @@ public class GameManager : MonoBehaviour
 				}
 			}
 		}
-
-		Debug.Log(gameInputAllowed);
 	}
 
 	public void ExitGame()
