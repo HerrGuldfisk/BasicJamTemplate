@@ -39,7 +39,7 @@ public class Card : MonoBehaviour
 		if (MemoryController.Instance.flippedCards < 2 && flipped == false)
 		{
 			// play audio
-			// AudioManager.Instance.Play("efffect_name");
+			AudioManager.Instance.Play("effect_flip");
 			MemoryController.Instance.StoreCards(this);
 			StartCoroutine(FlipCard());
 		}
@@ -78,6 +78,7 @@ public class Card : MonoBehaviour
 
 	public void LowerCard(float lowerTime)
 	{
+		AudioManager.Instance.Play("effect_tap");
 		LeanTween.moveZ(gameObject, 0, lowerTime).setEase(fallCurve);
 	}
 
