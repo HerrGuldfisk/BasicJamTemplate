@@ -34,4 +34,9 @@ public abstract class CardEffect: MonoBehaviour
 	{
 		yield return null;
 	}
+
+	public IEnumerator WaitForTime(float time)
+	{
+		yield return new WaitForSecondsRealtime(time);
+	}
 }

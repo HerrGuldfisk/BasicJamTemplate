@@ -6251,6 +6251,7 @@ MonoBehaviour:
   sounds:
   - name: 
     clip: {fileID: 0}
+    channel: {fileID: 8490547837896254819, guid: 4a82310bcbab2384e88dfac321c530d8, type: 2}
     volume: 0
     pitch: 0
     loop: 0

@@ -11,6 +11,8 @@ public class Sound
 
 	public AudioClip clip;
 
+	public AudioMixerGroup channel;
+
 	[Range(0, 1f)]
 	public float volume;
 

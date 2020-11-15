@@ -38,6 +38,8 @@ public class Card : MonoBehaviour
 	{
 		if (MemoryController.Instance.flippedCards < 2 && flipped == false)
 		{
+			// play audio
+			// AudioManager.Instance.Play("efffect_name");
 			MemoryController.Instance.StoreCards(this);
 			StartCoroutine(FlipCard());
 		}
