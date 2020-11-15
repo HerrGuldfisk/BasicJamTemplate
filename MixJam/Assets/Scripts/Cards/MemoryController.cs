@@ -109,6 +109,7 @@ public class MemoryController : MonoBehaviour
 					// Remove the cards when found
 					if (board.board[i, j] == card1 || board.board[i, j] == card2)
 					{
+						AudioManager.Instance.Play("effect_destroy");
 						Destroy(board.board[i, j].gameObject);
 						board.board[i, j] = null;
 					}

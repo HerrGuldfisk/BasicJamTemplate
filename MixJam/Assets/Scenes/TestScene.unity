@@ -6284,6 +6284,13 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: effect_destroy
+    clip: {fileID: 8300000, guid: 4ac2b9aa03332b34f8f76a9ef8ecb136, type: 3}
+    channel: {fileID: 2024049351113826497, guid: 4a82310bcbab2384e88dfac321c530d8, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
   paramNames:
   - MasterVolume
   - MusicMasterVolume
