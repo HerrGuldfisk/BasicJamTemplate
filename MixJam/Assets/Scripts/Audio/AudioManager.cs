@@ -73,6 +73,7 @@ public class AudioManager : MonoBehaviour
 		s.source.Play();
 	}
 
+
 	public void Muted()
 	{
 		// Add a muted function that toggle sound volume.
