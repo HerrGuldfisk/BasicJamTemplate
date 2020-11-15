@@ -33,11 +33,6 @@ public class Card : MonoBehaviour
 		cardName = gameObject.name;
 	}
 
-    private void OnMouseEnter()
-    {
-		AudioManager.Instance.Play("effect_hover");
-	}
-
     public void Clicked()
 	{
 		if (MemoryController.Instance.flippedCards < 2 && flipped == false)

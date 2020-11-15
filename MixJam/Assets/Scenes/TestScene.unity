@@ -6277,6 +6277,13 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: effect_hover
+    clip: {fileID: 8300000, guid: fd616994b70ba6948ac6b49f5314ad40, type: 3}
+    channel: {fileID: 2024049351113826497, guid: 4a82310bcbab2384e88dfac321c530d8, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
   paramNames:
   - MasterVolume
   - MusicMasterVolume
