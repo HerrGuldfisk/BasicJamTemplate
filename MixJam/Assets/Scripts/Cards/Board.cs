@@ -44,12 +44,14 @@ public class Board :  MonoBehaviour
 
 		Shuffle();
 
-		Deal();
+		StartCoroutine(Deal());
 	}
 
-	private void Deal()
+	private IEnumerator Deal()
 	{
 		int pos = 0;
+		Debug.Log(currentCards.Count);
+		float timeBetweenCards = 1f / currentCards.Count;
 
 		for(int j = 0; j < y; j++)
 		{
@@ -57,9 +59,11 @@ public class Board :  MonoBehaviour
 			{
 				board[i, j] = Instantiate(currentCards[pos], transform);
 
-				board[i, j].MoveTo(i, j);
+				board[i, j].MoveToDealing(i, j);
 
 				pos++;
+
+				yield return new WaitForSecondsRealtime(timeBetweenCards);
 			}
 		}
 	}

@@ -95,6 +95,18 @@ public class Card : MonoBehaviour
 		}
 	}
 
+	public void MoveToDealing(float x, float y)
+	{
+		if (animMoveCurve != null)
+		{
+			LeanTween.move(gameObject, new Vector3(x, y, transform.position.z), MemoryController.Instance.cardMoveTime * 2).setEaseOutExpo();
+		}
+		else
+		{
+			LeanTween.move(gameObject, new Vector3(x, y, transform.position.z), MemoryController.Instance.cardMoveTime * 2).setEaseOutExpo();
+		}
+	}
+
 	public void CardEffect()
 	{
 		cardEffect.Execute();
