@@ -27,12 +27,14 @@ public class LevelManager : MonoBehaviour
 
 	public bool debugMessages;
 
-
+	private List<Scene> allScenes = new List<Scene>();
 	private int currentScene;
+
 
 	private void Start()
 	{
 		SceneManager.sceneLoaded += OnSceneWasLoaded;
+
 	}
 
 	public void OnSceneWasLoaded(Scene scene, LoadSceneMode mode)
@@ -41,12 +43,15 @@ public class LevelManager : MonoBehaviour
 		currentScene = SceneManager.GetActiveScene().buildIndex;
 	}
 
+	/// <summary>
+	/// Loads the next scene in the build order.
+	/// </summary>
 	public void LoadLevel()
 	{
 		// If there is a new level load that, else load the first level.
 		if (SceneManager.sceneCountInBuildSettings > currentScene + 1)
 		{
-			SceneManager.LoadSceneAsync(currentScene + 1);
+			SceneManager.LoadSceneAsync(currentScene + 1, LoadSceneMode.Additive);
 		}
 		else
 		{
@@ -54,8 +59,40 @@ public class LevelManager : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// Loads the <paramref name="index"/> from the build order.
+	/// </summary>
+	/// <param name="index"></param>
 	public void LoadLevel(int index)
 	{
 		SceneManager.LoadSceneAsync(index);
+	}
+
+	/// <summary>
+	/// Unloads the oldest scene in use.
+	/// </summary>
+	public void UnloadLevel()
+	{
+		if (allScenes.Count > 0)
+		{
+			SceneManager.UnloadSceneAsync(allScenes[0]);
+			allScenes.Remove(allScenes[0]);
+		}
+		else
+		{
+			Debug.Log("There are no scenes that can be unloaded");
+		}
+	}
+
+	/// <summary>
+	/// Unloads all currently active scenes.
+	/// </summary>
+	public void UnloadAllLevels()
+	{
+		foreach (Scene scene in allScenes)
+		{
+			SceneManager.UnloadSceneAsync(allScenes[0]);
+			allScenes.Remove(allScenes[0]);
+		}
 	}
 }
