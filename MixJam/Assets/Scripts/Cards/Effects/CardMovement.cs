@@ -25,7 +25,7 @@ public class CardMovement : MonoBehaviour
 	private const float MEDIUMTIME = TIMEGOD * 0.35f;
 	private const float LONGTIME = TIMEGOD * 0.6f;
 
-	private const float cardRatio = 0.66f;
+	private const float cardRatio = 0.75f;
 
 	private bool isShaking;
 
