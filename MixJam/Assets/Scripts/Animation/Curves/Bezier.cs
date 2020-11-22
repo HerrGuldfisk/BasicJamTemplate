@@ -6,7 +6,7 @@ namespace Basics.Animation
 {
 	public class Bezier
 	{
-		Vector3 CalculateBezierPoint(float t, Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)
+		public Vector3 CalculateBezierPoint(float t, Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)
 		{
 			float u = 1 - t;
 			float tt = t * t;

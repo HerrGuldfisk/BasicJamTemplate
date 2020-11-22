@@ -46,6 +46,8 @@ public class MemoryController : MonoBehaviour
 
 	public AnimationCurve fallCurve;
 
+	public AnimationCurve bezierCurve;
+
 	public float cardHeight;
 	#endregion
 

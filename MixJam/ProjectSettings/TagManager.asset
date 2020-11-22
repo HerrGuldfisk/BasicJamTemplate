@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - OptionsMenu
+  - CardModel
   layers:
   - Default
   - TransparentFX

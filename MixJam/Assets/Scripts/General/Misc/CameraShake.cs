@@ -16,7 +16,7 @@ public class CameraShake : MonoBehaviour
 		}
 	}
 
-    private IEnumerator ShakeCamera(float duration, float magnitude, float delay)
+    private IEnumerator ShakeCamera(float duration, float magnitude, float delay=0f)
 	{
 		Vector3 originalPos = transform.position;
 

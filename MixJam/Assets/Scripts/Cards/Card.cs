@@ -22,6 +22,8 @@ public class Card : MonoBehaviour
 
 	public string cardName;
 
+	public CardMovement move;
+
 	private void Start()
 	{
 		animMoveCurve = MemoryController.Instance.animMoveCurve;
@@ -29,6 +31,8 @@ public class Card : MonoBehaviour
 		riseCurve = MemoryController.Instance.riseCurve;
 		fallCurve = MemoryController.Instance.fallCurve;
 		cardHeight = MemoryController.Instance.cardHeight;
+
+		move = GetComponent<CardMovement>();
 
 		cardName = gameObject.name;
 	}
@@ -51,7 +55,6 @@ public class Card : MonoBehaviour
 		LowerCard(MemoryController.Instance.cardRotationTime / 3);
 		yield return new WaitForSecondsRealtime(MemoryController.Instance.cardRotationTime / 2.9f);
 		Camera.main.GetComponent<CameraShake>().Shake(0.3f, 0.02f);
-		// transform.position = new Vector3(transform.position.x, 0, transform.position.z);
 	}
 
 	public void RaiseCard(float height, float time)
