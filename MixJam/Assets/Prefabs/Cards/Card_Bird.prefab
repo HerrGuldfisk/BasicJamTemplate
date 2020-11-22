@@ -81,6 +81,10 @@ PrefabInstance:
       propertyPath: cardEffect
       value: 
       objectReference: {fileID: 5381110730824686890}
+    - target: {fileID: 9014368492904520879, guid: ab8335fdbaa8a6648be782bf6decf877, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 06491b3b5f17f3144b69c797111df878, type: 2}
     m_RemovedComponents:
     - {fileID: 4502278362497297136, guid: ab8335fdbaa8a6648be782bf6decf877, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ab8335fdbaa8a6648be782bf6decf877, type: 3}
