@@ -59,7 +59,7 @@ public class Board :  MonoBehaviour
 			{
 				board[i, j] = Instantiate(currentCards[pos], transform);
 
-				board[i, j].MoveToDealing(i, j);
+				board[i, j].move.MoveToDealing(i, j);
 
 				pos++;
 

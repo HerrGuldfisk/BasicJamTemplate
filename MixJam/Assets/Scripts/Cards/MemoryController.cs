@@ -184,11 +184,11 @@ public class MemoryController : MonoBehaviour
 
 	private IEnumerator PrepareCards()
 	{
-		card1.RaiseCard(cardHeight, cardRotationTime / 3);
-		card2.RaiseCard(cardHeight, cardRotationTime / 3);
+		card1.move.Raise(cardHeight, cardRotationTime / 3);
+		card2.move.Raise(cardHeight, cardRotationTime / 3);
 		yield return new WaitForSecondsRealtime(cardRotationTime / 9);
-		card1.RotateCard(cardRotationTime);
-		card2.RotateCard(cardRotationTime);
+		card1.move.Rotate(cardRotationTime);
+		card2.move.Rotate(cardRotationTime);
 		yield return new WaitForSecondsRealtime(cardRotationTime * 1);
 	}
 }

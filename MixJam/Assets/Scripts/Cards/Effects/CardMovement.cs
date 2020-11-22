@@ -19,9 +19,11 @@ public class CardMovement : MonoBehaviour
 	public float raiseHeight;
 	#endregion
 
-	private const float shortTime = 0.2f;
-	private const float mediumTime = 0.35f;
-	private const float longTime = 0.6f;
+	private const float TIMEGOD = 1f;
+
+	private const float SHORTTIME = TIMEGOD * 0.2f;
+	private const float MEDIUMTIME = TIMEGOD * 0.35f;
+	private const float LONGTIME = TIMEGOD * 0.6f;
 
 	private const float cardRatio = 0.66f;
 
@@ -38,7 +40,7 @@ public class CardMovement : MonoBehaviour
 	}
 
 
-	public void Raise(float height = 0.5f, float time=longTime)
+	public void Raise(float height = 0.5f, float time=LONGTIME)
 	{
 		if (riseCurve != null)
 		{
@@ -50,7 +52,7 @@ public class CardMovement : MonoBehaviour
 		}
 	}
 
-	public void Lower(float time=mediumTime)
+	public void Lower(float time=MEDIUMTIME)
 	{
 		if(fallCurve != null)
 		{
@@ -110,32 +112,32 @@ public class CardMovement : MonoBehaviour
 
 	private IEnumerator FullFlipRoutine()
 	{
-		Raise(raiseHeight, shortTime);
-		yield return new WaitForSecondsRealtime(shortTime / 3f);
-		Rotate(longTime);
-		yield return new WaitForSecondsRealtime(shortTime * 2f);
-		Lower(shortTime);
-		yield return new WaitForSecondsRealtime(shortTime);
+		Raise(raiseHeight, SHORTTIME);
+		yield return new WaitForSecondsRealtime(SHORTTIME / 3f);
+		Rotate(LONGTIME);
+		yield return new WaitForSecondsRealtime(SHORTTIME * 2f);
+		Lower(SHORTTIME);
+		yield return new WaitForSecondsRealtime(SHORTTIME);
 
-		Camera.main.GetComponent<CameraShake>().Shake(shortTime, 0.02f);
+		Camera.main.GetComponent<CameraShake>().Shake(SHORTTIME, 0.02f);
 	}
 
 	public void MoveTo(float x, float y)
 	{
 		if (animMoveCurve != null)
 		{
-			LeanTween.move(gameObject, new Vector3(x * cardRatio, transform.position.y, y), mediumTime).setEase(animMoveCurve);
+			LeanTween.move(gameObject, new Vector3(x * cardRatio, transform.position.y, y), MEDIUMTIME).setEase(animMoveCurve);
 		}
 		else
 		{
-			LeanTween.move(gameObject, new Vector3(x * cardRatio, transform.position.y, y), mediumTime).setEaseInOutCubic();
+			LeanTween.move(gameObject, new Vector3(x * cardRatio, transform.position.y, y), MEDIUMTIME).setEaseInOutCubic();
 		}
 	}
 
 	public void MoveToDealing(float x, float y)
 	{
 		// Add sound effect for delaing cards.
-		LeanTween.move(gameObject, new Vector3(x *  cardRatio, transform.position.y, y), longTime * 2).setEaseOutExpo();
+		LeanTween.move(gameObject, new Vector3(x *  cardRatio, transform.position.y, y), LONGTIME * 2).setEaseOutExpo();
 	}
 
 	public void MoveBezier(Vector3 self, Vector3 p1, Vector3 p2, Vector3 end, AnimationCurve curve=null)
@@ -197,8 +199,6 @@ public class CardMovement : MonoBehaviour
 		}
 
 		StartCoroutine(ShakeRoutine(childBody, time, intensity, growing));
-
-
 	}
 
 	private IEnumerator ShakeRoutine(Transform body, float time, float _intensity, bool growing)
