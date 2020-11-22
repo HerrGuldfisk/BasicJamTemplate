@@ -1,46 +1,59 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class StompCards : CardEffect
 {
+	List<Card> cards;
+
+	List<int[]> positions;
+
 	public override void Execute()
 	{
 		GetCardBoard();
 
-		Card otherCard = board.GetRandomCard(card);
+		cards = new List<Card>(board.GetCardsAround(card));
 
-		SwapValues(card, otherCard);
+		positions = new List<int[]>();
 
-	}
-
-	private void SwapValues(Card card, Card other)
-	{
-		int[] tempCard = new int[2];
-		int[] tempOther = new int[2];
-
-		for (int j = 0; j < board.y; j++)
+		foreach (Card card in cards)
 		{
-			for (int i = 0; i < board.x; i++)
+			positions.Add(card.GetPosBoard());
+		}
+
+		for (int i = 0; i < cards.Count; i++)
+		{
+			if (i == 0)
 			{
-
-				if (board.board[i, j] == card)
-				{
-					tempCard[0] = i;
-					tempCard[1] = j;
-				}
-
-				if (board.board[i, j] == other)
-				{
-					tempOther[0] = i;
-					tempOther[1] = j;
-				}
+				board.board[positions[-1][0], positions[-1][1]] = cards[i];
+			}
+			else
+			{
+				board.board[positions[i - 1][0], positions[i - 1][1]] = cards[i];
 			}
 		}
 
-		board.board[tempCard[0], tempCard[1]] = other;
-		board.board[tempOther[0], tempOther[1]] = card;
+		StartCoroutine(Execution());
+	}
 
-		StartCoroutine(MoveCards(card, other, tempCard, tempOther));
+	private IEnumerator Execution()
+	{
+		card.move.Raise(0.5f, 1f);
+		yield return new WaitForSecondsRealtime(0.3f);
+		card.move.Shake(0.7f, 0.01f, true);
+		yield return new WaitForSecondsRealtime(0.2f);
+		card.move.Lower(0.2f);
+		AudioManager.Instance.Play("effect_tap");
+		yield return new WaitForSecondsRealtime(0.2f);
+
+		for (int i = 0; i < cards.Count; i++)
+		{
+			cards[i].move.Jump(0.25f, 0.45f);
+			cards[i].move.MoveTo(positions[i][0], positions[i][1], 0.45f);
+		}
+		yield return new WaitForSecondsRealtime(0.45f);
+
+		AudioManager.Instance.Play("effect_tap");
 	}
 }

@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1641030983797851536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3393087210596614012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40a7d11bd52fd3b4eac5fa56d5f64a68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  card: {fileID: 0}
+  board: {fileID: 0}
 --- !u!1001 &8395780495219509401
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -59,9 +73,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6599294317489977323, guid: ab8335fdbaa8a6648be782bf6decf877, type: 3}
+      propertyPath: cardEffect
+      value: 
+      objectReference: {fileID: 1641030983797851536}
     - target: {fileID: 9014368492904520879, guid: ab8335fdbaa8a6648be782bf6decf877, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: c3bc511f645b96e4facb91f14af42015, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4502278362497297136, guid: ab8335fdbaa8a6648be782bf6decf877, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ab8335fdbaa8a6648be782bf6decf877, type: 3}
+--- !u!1 &3393087210596614012 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6599294317489977317, guid: ab8335fdbaa8a6648be782bf6decf877, type: 3}
+  m_PrefabInstance: {fileID: 8395780495219509401}
+  m_PrefabAsset: {fileID: 0}

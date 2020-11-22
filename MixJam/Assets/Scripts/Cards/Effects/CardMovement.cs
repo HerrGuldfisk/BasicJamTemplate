@@ -66,9 +66,16 @@ public class CardMovement : MonoBehaviour
 		AudioManager.Instance.Play("effect_tap");
 	}
 
-	public void SlamDown()
+	public void Jump(float height = 0.5f, float time=LONGTIME)
 	{
+		StartCoroutine(JumpRoutine(height, time));
+	}
 
+	private IEnumerator JumpRoutine(float height, float time)
+	{
+		LeanTween.moveY(gameObject, height, time / 2f).setEaseOutSine();
+		yield return new WaitForSecondsRealtime(time / 2f);
+		LeanTween.moveY(gameObject, 0, time / 2f).setEaseInBounce();
 	}
 
 	public void Rotate(float time)
@@ -122,15 +129,15 @@ public class CardMovement : MonoBehaviour
 		Camera.main.GetComponent<CameraShake>().Shake(SHORTTIME, 0.02f);
 	}
 
-	public void MoveTo(float x, float y)
+	public void MoveTo(float x, float y, float time=MEDIUMTIME)
 	{
 		if (animMoveCurve != null)
 		{
-			LeanTween.move(gameObject, new Vector3(x * cardRatio, transform.position.y, y), MEDIUMTIME).setEase(animMoveCurve);
+			LeanTween.move(gameObject, new Vector3(x * cardRatio, transform.position.y, y), time).setEase(animMoveCurve);
 		}
 		else
 		{
-			LeanTween.move(gameObject, new Vector3(x * cardRatio, transform.position.y, y), MEDIUMTIME).setEaseInOutCubic();
+			LeanTween.move(gameObject, new Vector3(x * cardRatio, transform.position.y, y), time).setEaseInOutCubic();
 		}
 	}
 
@@ -176,7 +183,16 @@ public class CardMovement : MonoBehaviour
 	}
 
 
+
+
+
+
 	// Methods below only affect the card's graphics and not the "actual" position of the card.
+
+
+
+
+
 
 	public void Shake(float time, float intensity, bool growing=false)
 	{

@@ -101,4 +101,109 @@ public class Board :  MonoBehaviour
 
 		return board[randomX, randomY];
 	}
+
+	public List<Card> GetCardsAround(Card card)
+	{
+		Card owner = card;
+		int ownerX = -1;
+		int ownerY = -1;
+
+
+		List<Card> cardsToReturn =  new List<Card>();
+
+		for (int j = 0; j < y; j++)
+		{
+			for (int i = 0; i < x; i++)
+			{
+				// Remove the cards when found
+				if (board[i, j] == owner)
+				{
+					ownerX = i;
+					ownerY = y;
+				}
+			}
+		}
+
+		if (ownerX != 0)
+		{
+			if (board[ownerX - 1, ownerY - 1] != null)
+			{
+				cardsToReturn.Add(board[ownerX - 1, ownerY - 1]);
+			}
+			if (board[ownerX - 1, ownerY] != null)
+			{
+				cardsToReturn.Add(board[ownerX - 1, ownerY]);
+			}
+			if (board[ownerX - 1, ownerY + 1] != null)
+			{
+				cardsToReturn.Add(board[ownerX - 1, ownerY + 1]);
+			}
+		}
+
+
+
+		if (board[ownerX, ownerY + 1] != null)
+		{
+			cardsToReturn.Add(board[ownerX, ownerY + 1]);
+		}
+		if (board[ownerX + 1, ownerY + 1] != null)
+		{
+			cardsToReturn.Add(board[ownerX + 1, ownerY + 1]);
+		}
+		if (board[ownerX + 1, ownerY] != null)
+		{
+			cardsToReturn.Add(board[ownerX + 1, ownerY]);
+		}
+		if (board[ownerX + 1, ownerY - 1] != null)
+		{
+			cardsToReturn.Add(board[ownerX + 1, ownerY - 1]);
+		}
+		if (board[ownerX, ownerY - 1] != null)
+		{
+			cardsToReturn.Add(board[ownerX, ownerY - 1]);
+		}
+
+		return cardsToReturn;
+
+
+		/*
+		int startY = ownerY - 1;
+		int endY = ownerY + 1;
+
+		int startX = ownerX - 1;
+		int endX = ownerX + 1;
+
+		if (startY < 0)
+		{
+			startY = 0;
+		}
+		if (endY == y)
+		{
+			startY = ownerY;
+		}
+
+		if (startX < 0)
+		{
+			startX = 0;
+		}
+		if (endX == x)
+		{
+			startX = ownerX;
+		}
+
+		for (int j = startY; j <= endY; j++)
+		{
+			for (int i = startX; i <= endX; i++)
+			{
+				if (board[i,j] != owner)
+				{
+					cardsToReturn.Add(board[i, j]);
+				}
+			}
+		}
+
+		Debug.Log(cardsToReturn.Count);
+
+		return cardsToReturn;*/
+	}
 }

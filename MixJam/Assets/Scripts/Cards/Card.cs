@@ -51,6 +51,26 @@ public class Card : MonoBehaviour
 		}
 	}
 
+	public int[] GetPosBoard()
+	{
+		int[] position = new int[2];
+
+		for (int j = 0; j < MemoryController.Instance.board.y; j++)
+		{
+			for ( int i = 0; i < MemoryController.Instance.board.x; i++)
+			{
+				if (MemoryController.Instance.board.board[i, j] == this)
+				{
+					position[0] = i;
+					position[1] = j;
+				}
+
+			}
+		}
+
+		return position;
+	}
+
 	public void CardEffect()
 	{
 		cardEffect.Execute();
