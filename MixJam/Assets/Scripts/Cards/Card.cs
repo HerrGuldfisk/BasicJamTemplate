@@ -24,6 +24,11 @@ public class Card : MonoBehaviour
 
 	public CardMovement move;
 
+	private void Awake()
+	{
+		move = GetComponent<CardMovement>();
+	}
+
 	private void Start()
 	{
 		animMoveCurve = MemoryController.Instance.animMoveCurve;
@@ -32,7 +37,7 @@ public class Card : MonoBehaviour
 		fallCurve = MemoryController.Instance.fallCurve;
 		cardHeight = MemoryController.Instance.cardHeight;
 
-		move = GetComponent<CardMovement>();
+
 
 		cardName = gameObject.name;
 	}
