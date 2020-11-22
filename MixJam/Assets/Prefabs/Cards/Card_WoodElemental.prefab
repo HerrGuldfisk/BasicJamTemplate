@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 3538274063856808242, guid: ab8335fdbaa8a6648be782bf6decf877, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: ed7d38548a4ce1643bb6cee45796b1a9, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 6599294317489977317, guid: ab8335fdbaa8a6648be782bf6decf877, type: 3}
       propertyPath: m_Name
       value: Card_WoodElemental
@@ -59,5 +59,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9014368492904520879, guid: ab8335fdbaa8a6648be782bf6decf877, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 27ca0532e6149a54dbd589b87ad85de0, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab8335fdbaa8a6648be782bf6decf877, type: 3}

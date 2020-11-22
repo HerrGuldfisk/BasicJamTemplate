@@ -59,3 +59,5 @@ sysinfo.txt
 crashlytics-build.properties
 
 MixJam/Assets/Scripts/Cards/Prefab.meta
+MixJam/Assets/Scripts/Cards/Prefab/Textures.meta
+MixJam/Assets/Scripts/Cards/Prefab/Materials.meta
