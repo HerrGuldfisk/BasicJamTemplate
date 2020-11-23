@@ -17,6 +17,8 @@ public class StompCards : CardEffect
 
 		positions = new List<int[]>();
 
+
+
 		foreach (Card card in cards)
 		{
 			positions.Add(card.GetPosBoard());
@@ -24,9 +26,10 @@ public class StompCards : CardEffect
 
 		for (int i = 0; i < cards.Count; i++)
 		{
+
 			if (i == 0)
 			{
-				board.board[positions[-1][0], positions[-1][1]] = cards[i];
+				board.board[positions[positions.Count - 1][0], positions[positions.Count - 1][1]] = cards[i];
 			}
 			else
 			{
@@ -34,10 +37,10 @@ public class StompCards : CardEffect
 			}
 		}
 
-		StartCoroutine(Execution());
+		StartCoroutine(Stomp());
 	}
 
-	private IEnumerator Execution()
+	private IEnumerator Stomp()
 	{
 		card.move.Raise(0.5f, 1f);
 		yield return new WaitForSecondsRealtime(0.3f);
@@ -55,5 +58,7 @@ public class StompCards : CardEffect
 		yield return new WaitForSecondsRealtime(0.45f);
 
 		AudioManager.Instance.Play("effect_tap");
+
+		MemoryController.Instance.effectsDone = true;
 	}
 }

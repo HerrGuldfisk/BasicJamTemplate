@@ -124,23 +124,25 @@ public class Board :  MonoBehaviour
 			}
 		}
 
-		if (ownerX != 0)
+		int[] pos = owner.GetPosBoard();
+		ownerX = pos[0];
+		ownerY = pos[1];
+
+
+		if (board[ownerX - 1, ownerY - 1] != null)
 		{
-			if (board[ownerX - 1, ownerY - 1] != null)
-			{
-				cardsToReturn.Add(board[ownerX - 1, ownerY - 1]);
-			}
-			if (board[ownerX - 1, ownerY] != null)
-			{
-				cardsToReturn.Add(board[ownerX - 1, ownerY]);
-			}
-			if (board[ownerX - 1, ownerY + 1] != null)
-			{
-				cardsToReturn.Add(board[ownerX - 1, ownerY + 1]);
-			}
+			cardsToReturn.Add(board[ownerX - 1, ownerY - 1]);
 		}
 
+		if (board[ownerX - 1, ownerY] != null)
+		{
+			cardsToReturn.Add(board[ownerX - 1, ownerY]);
+		}
 
+		if (board[ownerX - 1, ownerY + 1] != null)
+		{
+			cardsToReturn.Add(board[ownerX - 1, ownerY + 1]);
+		}
 
 		if (board[ownerX, ownerY + 1] != null)
 		{
