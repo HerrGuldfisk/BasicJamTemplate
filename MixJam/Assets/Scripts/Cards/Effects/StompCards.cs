@@ -22,7 +22,7 @@ public class StompCards : CardEffect
 			cardsAtPositions.Add(board.board[posAround[i][0], posAround[i][1]]);
 		}
 
-		Card temp = null;
+		Card tempCard = null;
 
 		for (int i = 0; i < cardsAtPositions.Count; i++)
 		{
@@ -32,26 +32,21 @@ public class StompCards : CardEffect
 				{
 					if (board.board[posAround[posAround.Count - 1][0], posAround[posAround.Count - 1][1]] != null)
 					{
-						temp = board.board[posAround[posAround.Count - 1][0], posAround[posAround.Count - 1][1]];
+						tempCard = board.board[posAround[posAround.Count - 1][0], posAround[posAround.Count - 1][1]];
 					}
 
 					board.board[posAround[posAround.Count - 1][0], posAround[posAround.Count - 1][1]] = cardsAtPositions[i];
 
 				}
-				else if (i == posAround.Count - 1 && temp != null)
+				else if (i == posAround.Count - 1 && tempCard != null)
 				{
-					board.board[posAround[i - 1][0], posAround[i - 1][1]] = temp;
+					board.board[posAround[i - 1][0], posAround[i - 1][1]] = tempCard;
 				}
 				else
 				{
 					board.board[posAround[i - 1][0], posAround[i - 1][1]] = cardsAtPositions[i];
 				}
 			}
-		}
-
-		foreach(Card card in cardsAtPositions)
-		{
-			Debug.Log(card.name + " " + card.GetPosBoard()[0] + " " + card.GetPosBoard()[1]);
 		}
 
 		StartCoroutine(Stomp());
