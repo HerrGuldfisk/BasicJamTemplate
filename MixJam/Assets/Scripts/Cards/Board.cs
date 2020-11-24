@@ -102,9 +102,121 @@ public class Board :  MonoBehaviour
 		return board[randomX, randomY];
 	}
 
-	public List<Card> GetCardsAround(Card card)
+	public List<int[]> GetPosAroundCard(Card card, bool sorted=true)
 	{
-		Card owner = card;
+		List<int[]> listReturn = new List<int[]>();
+
+		Card centerCard = card;
+
+		int[] centerPos = centerCard.GetPosBoard();
+
+		int startX = centerPos[0] - 1;
+		int endX = centerPos[0] + 1;
+
+		int startY = centerPos[1] - 1;
+		int endY = centerPos[1] + 1;
+
+		startX = Mathf.Clamp(startX, 0, x - 1);
+		endX = Mathf.Clamp(endX, 0, x - 1);
+
+		startY = Mathf.Clamp(startY, 0, y - 1);
+		endY = Mathf.Clamp(endY, 0, y - 1);
+
+		for (int j = startY; j <= endY; j++)
+		{
+			for (int i = startX; i <= endX; i++)
+			{
+				if (centerPos[0] == i && centerPos[1] == j)
+				{
+					// Do nothing with the picked card
+				}
+				else
+				{
+					int[] temp = new int[2];
+					temp[0] = i;
+					temp[1] = j;
+					listReturn.Add(temp);
+				}
+			}
+		}
+
+		if (!sorted)
+		{
+			return listReturn;
+		}
+		else
+		{
+			if (centerPos[0] == 0 && centerPos[1] == 0)
+			{
+				Debug.Log("00");
+				int[] temp = listReturn[1];
+				listReturn[1] = listReturn[2];
+				listReturn[2] = temp;
+			}
+			if (centerPos[0] != 0 && centerPos[0] != x - 1 && centerPos[1] == 0)
+			{
+				Debug.Log("-0");
+				int[] temp = listReturn[2];
+				listReturn[2] = listReturn[4];
+				listReturn[4] = temp;
+			}
+			if (centerPos[0] == x -1 && centerPos[1] == 0)
+			{
+				Debug.Log("x0");
+				int[] temp = listReturn[1];
+				listReturn[1] = listReturn[2];
+				listReturn[2] = temp;
+			}
+
+			if (centerPos[0] == 0 && centerPos[1] != 0 && centerPos[1] != y - 1)
+			{
+				Debug.Log("0-");
+				int[] temp = listReturn[3];
+				listReturn[3] = listReturn[4];
+				listReturn[4] = temp;
+			}
+			if (centerPos[0] != 0 && centerPos[1] != 0 && centerPos[0] != x - 1 && centerPos[1] != y - 1)
+			{
+				Debug.Log("--");
+				int[] temp = listReturn[3];
+				listReturn[3] = listReturn[4];
+				listReturn[4] = temp;
+
+				temp = listReturn[5];
+				listReturn[5] = listReturn[7];
+				listReturn[7] = temp;
+			}
+			if (centerPos[0] == x - 1 && centerPos[1] != 0 && centerPos[1] != y - 1)
+			{
+				Debug.Log("0y");
+				int[] temp = listReturn[2];
+				listReturn[2] = listReturn[4];
+				listReturn[4] = temp;
+			}
+
+			if (centerPos[0] == 0 && centerPos[1] == y - 1)
+			{
+				// No sorting needed.
+			}
+			if (centerPos[0] != 0 && centerPos[0] != x - 1 && centerPos[1] == y - 1)
+			{
+				Debug.Log("-y");
+				int[] temp = listReturn[3];
+				listReturn[3] = listReturn[4];
+				listReturn[4] = temp;
+			}
+			if (centerPos[0] == x - 1 && centerPos[1] == y - 1)
+			{
+				// No sorting needed.
+			}
+
+			return listReturn;
+		}
+	}
+
+	#region testcodethatsucks
+	/*
+	 * Card owner = card;
 		int ownerX = -1;
 		int ownerY = -1;
 
@@ -206,6 +318,7 @@ public class Board :  MonoBehaviour
 
 		Debug.Log(cardsToReturn.Count);
 
-		return cardsToReturn;*/
-	}
+		return cardsToReturn;
+	 */
+	#endregion
 }

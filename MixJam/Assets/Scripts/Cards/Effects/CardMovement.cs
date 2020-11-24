@@ -133,11 +133,15 @@ public class CardMovement : MonoBehaviour
 	{
 		if (animMoveCurve != null)
 		{
-			LeanTween.move(gameObject, new Vector3(x * cardRatio, transform.position.y, y), time).setEase(animMoveCurve);
+			// LeanTween.move(gameObject, new Vector3(x * cardRatio, transform.position.y, y), time).setEase(animMoveCurve);
+			LeanTween.moveX(gameObject, x * cardRatio, time).setEase(animMoveCurve);
+			LeanTween.moveZ(gameObject, y, time).setEase(animMoveCurve);
 		}
 		else
 		{
-			LeanTween.move(gameObject, new Vector3(x * cardRatio, transform.position.y, y), time).setEaseInOutCubic();
+			// LeanTween.move(gameObject, new Vector3(x * cardRatio, transform.position.y, y), time).setEaseInOutCubic();
+			LeanTween.moveX(gameObject, x * cardRatio, time).setEaseInOutCubic();
+			LeanTween.moveZ(gameObject, y, time).setEaseInOutCubic();
 		}
 	}
 
@@ -221,28 +225,32 @@ public class CardMovement : MonoBehaviour
 	{
 		Vector3 originalPos = body.position;
 		float goalIntensity = _intensity;
-		float intensity = goalIntensity;
 		float duration = time;
 
-		while(duration > 0)
+		while (duration > 0)
 		{
+			float intensity;
 			if (growing)
 			{
-				intensity += (time / Time.unscaledDeltaTime);
+				intensity = (time - duration) * goalIntensity;
+			}
+			else
+			{
+				intensity = goalIntensity;
 			}
 
 			float x = Random.Range(-1f, 1f) * intensity;
 			float y = Random.Range(-1f, 1f) * intensity;
 			float z = Random.Range(-1f, 1f) * intensity;
 
-			transform.localPosition = new Vector3(originalPos.x + x, originalPos.y + y, originalPos.z + z);
+			body.localPosition = new Vector3(x, y, z);
 
 			duration -= Time.unscaledDeltaTime;
 			yield return new WaitForSecondsRealtime(Time.unscaledDeltaTime);
 
 		}
 
-		transform.position = originalPos;
+		body.position = originalPos;
 
 		isShaking = false;
 	}
