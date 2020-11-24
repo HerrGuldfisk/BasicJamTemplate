@@ -60,10 +60,10 @@ public class StompCards : CardEffect
 
 	private IEnumerator Stomp()
 	{
-		// card.move.Raise(0.5f, 1f);
-		// yield return new WaitForSecondsRealtime(0.3f);
+		card.move.Raise(0.7f, 0.5f);
+		yield return new WaitForSecondsRealtime(0.3f);
 		card.move.Shake(0.7f, 0.02f, true);
-		yield return new WaitForSecondsRealtime(1f);
+		yield return new WaitForSecondsRealtime(0.7f);
 		card.move.Lower(0.2f);
 		AudioManager.Instance.Play("effect_tap");
 		yield return new WaitForSecondsRealtime(0.2f);

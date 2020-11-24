@@ -182,9 +182,13 @@ public class Board :  MonoBehaviour
 				listReturn[3] = listReturn[4];
 				listReturn[4] = temp;
 
-				temp = listReturn[5];
-				listReturn[5] = listReturn[7];
-				listReturn[7] = temp;
+				int[] temp1 = listReturn[4];
+				listReturn[4] = listReturn[7];
+				listReturn[7] = temp1;
+
+				int[] temp2 = listReturn[5];
+				listReturn[5] = listReturn[6];
+				listReturn[6] = temp2;
 			}
 			if (centerPos[0] == x - 1 && centerPos[1] != 0 && centerPos[1] != y - 1)
 			{

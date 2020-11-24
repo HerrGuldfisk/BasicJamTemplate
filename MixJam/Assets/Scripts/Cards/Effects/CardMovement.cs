@@ -223,7 +223,6 @@ public class CardMovement : MonoBehaviour
 
 	private IEnumerator ShakeRoutine(Transform body, float time, float _intensity, bool growing)
 	{
-		Vector3 originalPos = body.position;
 		float goalIntensity = _intensity;
 		float duration = time;
 
@@ -250,8 +249,8 @@ public class CardMovement : MonoBehaviour
 
 		}
 
-		body.position = originalPos;
-
+		body.localPosition = new Vector3(0, 0, 0);
+		Debug.Log(body.position);
 		isShaking = false;
 	}
 }
