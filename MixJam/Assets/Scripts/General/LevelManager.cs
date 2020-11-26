@@ -27,7 +27,7 @@ public class LevelManager : MonoBehaviour
 
 	public bool debugMessages;
 
-	private List<Scene> allScenes = new List<Scene>();
+	private List<int> currentScenesBuildIndex = new List<int>();
 	private int currentScene;
 
 
@@ -39,7 +39,7 @@ public class LevelManager : MonoBehaviour
 
 	public void OnSceneWasLoaded(Scene scene, LoadSceneMode mode)
 	{
-		Debug.Log("Scene with name " + scene.name + " and build index " + scene.buildIndex + " was successfully loaded");
+		Debug.Log("Scene with name " + scene.name + " with build index " + scene.buildIndex + " was successfully loaded");
 		currentScene = SceneManager.GetActiveScene().buildIndex;
 	}
 
@@ -52,6 +52,7 @@ public class LevelManager : MonoBehaviour
 		if (SceneManager.sceneCountInBuildSettings > currentScene + 1)
 		{
 			SceneManager.LoadSceneAsync(currentScene + 1, LoadSceneMode.Additive);
+			currentScenesBuildIndex.Add(currentScene + 1);
 		}
 		else
 		{
@@ -65,22 +66,24 @@ public class LevelManager : MonoBehaviour
 	/// <param name="index"></param>
 	public void LoadLevel(int index)
 	{
-		SceneManager.LoadSceneAsync(index);
+		Debug.Log("Loading level");
+		SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
+		currentScenesBuildIndex.Add(index);
 	}
 
 	/// <summary>
 	/// Unloads the oldest scene in use.
 	/// </summary>
-	public void UnloadLevel()
+	public void UnloadLevel(int index)
 	{
-		if (allScenes.Count > 0)
+		if (currentScenesBuildIndex.Count > index)
 		{
-			SceneManager.UnloadSceneAsync(allScenes[0]);
-			allScenes.Remove(allScenes[0]);
+			SceneManager.UnloadSceneAsync(currentScenesBuildIndex[index]);
+			currentScenesBuildIndex.Remove(currentScenesBuildIndex[index]);
 		}
 		else
 		{
-			Debug.Log("There are no scenes that can be unloaded");
+			Debug.Log("There aren't that many scenes in use");
 		}
 	}
 
@@ -89,10 +92,10 @@ public class LevelManager : MonoBehaviour
 	/// </summary>
 	public void UnloadAllLevels()
 	{
-		foreach (Scene scene in allScenes)
+		foreach (int buildIndex in currentScenesBuildIndex)
 		{
-			SceneManager.UnloadSceneAsync(allScenes[0]);
-			allScenes.Remove(allScenes[0]);
+			SceneManager.UnloadSceneAsync(currentScenesBuildIndex[0]);
+			currentScenesBuildIndex.Remove(currentScenesBuildIndex[0]);
 		}
 	}
 }

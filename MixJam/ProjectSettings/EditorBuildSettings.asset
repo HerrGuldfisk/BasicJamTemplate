@@ -8,5 +8,11 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/TestScene.unity
+    guid: 752d887dbf70aab448d13ae33e6d7b18
+  - enabled: 1
+    path: Assets/Scenes/TheoTest/Testing terrain Loading.unity
+    guid: 1e22a5fa20dfba24a92534e5e1a8f46c
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 74869413f6fce794d8829e6a819b3f09, type: 2}

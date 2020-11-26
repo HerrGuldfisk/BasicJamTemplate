@@ -53,6 +53,8 @@ public class MemoryController : MonoBehaviour
 
 	public int flippedCards = 0;
 
+	public float cardRatio = 0.75f;
+
 	public void FromSlider(float sliderValue)
 	{
 		boardY = (int) sliderValue;
@@ -60,6 +62,10 @@ public class MemoryController : MonoBehaviour
 
 	public void ResetGame()
     {
+		LevelManager.Instance.UnloadLevel(1);
+
+		LevelManager.Instance.LoadLevel(1);
+
 		if (GetComponent<Board>())
 		{
 			Destroy(board);
