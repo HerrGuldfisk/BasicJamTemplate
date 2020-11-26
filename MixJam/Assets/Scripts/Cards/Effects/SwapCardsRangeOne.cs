@@ -8,14 +8,29 @@ public class SwapCardsRangeOne : CardEffect
 	{
 		GetCardBoard();
 
-		List<int[]> otherCards = board.GetPosAroundCard(card);
+		List<int[]> otherCardsPositions = board.GetPosAroundCard(card);
 
-		int randomNumber = Random.Range(0, otherCards.Count - 1);
+		int randomNumber = Random.Range(0, otherCardsPositions.Count - 1);
 
-		Card otherCard = board.board[otherCards[randomNumber][0], otherCards[randomNumber][1]];
+		List<Card> otherCards = new List<Card>();
 
-		SwapValues(card, otherCard);
+		for (int i = 0; i < otherCardsPositions.Count; i++)
+		{
+			if(board.board[otherCardsPositions[i][0], otherCardsPositions[i][1]] != null)
+			{
+				otherCards.Add(board.board[otherCardsPositions[i][0], otherCardsPositions[i][1]]);
+			}
+		}
 
+		if (otherCards.Count > 0)
+		{
+			Card otherCard = board.board[otherCardsPositions[randomNumber][0], otherCardsPositions[randomNumber][1]];
+			SwapValues(card, otherCard);
+		}
+		else
+		{
+			Debug.Log("No cards to swap with, what should happen now?");
+		}
 	}
 
 	private void SwapValues(Card card, Card other)
