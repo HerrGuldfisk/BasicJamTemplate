@@ -7,6 +7,7 @@ TagManager:
   - OptionsMenu
   - CardModel
   - TerrainModel
+  - PairPoint
   layers:
   - Default
   - TransparentFX

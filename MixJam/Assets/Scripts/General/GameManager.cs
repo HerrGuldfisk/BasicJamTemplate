@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
 
 	public bool gameInputAllowed = true;
 
+	public Vector3 pairPoint;
 
 	private void Start()
 	{

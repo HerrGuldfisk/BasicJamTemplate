@@ -88,8 +88,8 @@ public class MemoryController : MonoBehaviour
 		board.StartUp();
 	}
 
-	Card card1;
-	Card card2;
+	public Card card1 { private set;  get; }
+	public Card card2 { private set; get; }
 
 	public void StoreCards(Card currentFlippedCard)
 	{
@@ -114,6 +114,7 @@ public class MemoryController : MonoBehaviour
 		// Compare the two cards, are they the same?
 		if (card1.cardName.Equals(card2.cardName))
 		{
+
 			// The cards were the same....
 			// Look for the two cards in the board array
 			for (int j = 0; j < board.y; j++)

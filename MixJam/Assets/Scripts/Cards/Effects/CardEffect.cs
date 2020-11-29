@@ -37,4 +37,17 @@ public abstract class CardEffect: MonoBehaviour
 	{
 		yield return null;
 	}
+
+	public IEnumerator PairFound(Card owner)
+	{
+		Card card = owner;
+
+		Vector3 cardMiddle = new Vector3(card.transform.position.x, GameManager.Instance.pairPoint.y, card.transform.position.z);
+
+		Debug.Log("Pair found");
+
+		card.move.MoveBezier(card.transform.position, cardMiddle, GameManager.Instance.pairPoint);
+
+		yield return new WaitForSecondsRealtime(1f);
+	}
 }

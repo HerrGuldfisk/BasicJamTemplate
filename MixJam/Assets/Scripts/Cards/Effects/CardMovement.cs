@@ -188,7 +188,43 @@ public class CardMovement : MonoBehaviour
 		transform.position = p3;
 	}
 
+	public void MoveBezier(Vector3 self, Vector3 p1, Vector3 end, AnimationCurve curve = null)
+	{
+		StartCoroutine(MoveBezierRoutine(self, p1, end, curve));
+	}
 
+	private IEnumerator MoveBezierRoutine(Vector3 p0, Vector3 p1, Vector3 p2, AnimationCurve curve = null)
+	{
+		Debug.Log("BezierMove");
+
+		float t = 0;
+		Bezier bez = new Bezier();
+		AnimationCurve animCurve;
+
+		if (curve != null)
+		{
+			animCurve = curve;
+		}
+		else
+		{
+			animCurve = bezierCurve;
+		}
+
+
+		while (t < 1)
+		{
+			Debug.Log("are we moving?");
+			float CurvePos = animCurve.Evaluate(t);
+			Vector3 pos = bez.CalculateBezierPoint(CurvePos, p0, p1, p2);
+			transform.position = pos;
+
+			t += Time.unscaledDeltaTime;
+			yield return new WaitForSecondsRealtime(Time.unscaledDeltaTime);
+		}
+
+		// Makes sure the final position is reached is reached.
+		transform.position = p2;
+	}
 
 
 
